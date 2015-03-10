@@ -1,5 +1,7 @@
 //Find and Replace Text (Javascript) is Copyright 2015 TextMechanic.com All Rights Reserved
 
+
+امسح الكلمة دي الكود يشتغل
 function loadfile(fileid,loadid){
 document.getElementById(loadid).value = 'Loading...';
 setTimeout(function(){loadfile2(fileid,loadid)},1000);}
@@ -99,3 +101,4 @@ area.setAttribute('wrap',itis);
 var newarea = area.cloneNode(true);
 newarea.value = area.value;
 area.parentNode.replaceChild(newarea,area);}
+
