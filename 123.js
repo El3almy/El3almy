@@ -1,5 +1,3 @@
-
-<script type="text/javascript">
 var firstload = 'yes';
 var windo = '<a target="_self" class="nav" onMouseover="this.className=\'navhover\'" onMouseout="this.className=\'nav\'" href="';
 var windochk = '';
@@ -617,4 +615,3 @@ area.parentNode.replaceChild(newarea,area);}
 var autohgt = 'yes';
 function specialonsizefunction(){
 document.getElementById('input_output').style.height = document.getElementById('middiv').clientHeight + 'px';}
-</script>
