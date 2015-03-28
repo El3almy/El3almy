@@ -1,618 +1,1205 @@
-var firstload = 'yes';
-var windo = '<a target="_self" class="nav" onMouseover="this.className=\'navhover\'" onMouseout="this.className=\'nav\'" href="';
-var windochk = '';
-
-function windotargt(){
-if(document.getElementById('newwin').checked == true){
-windo = '<a target="_blank" class="nav" onMouseover="this.className=\'navhover\'" onMouseout="this.className=\'nav\'" href="';
-windochk = 'CHECKED';
-} else {
-windo = '<a target="_self" class="nav" onMouseover="this.className=\'navhover\'" onMouseout="this.className=\'nav\'" href="';
-windochk = '';}}
-
-function loadmenu(menuf){
-var tlespn = '"><span style="padding-left:10px;">';
-var endspn = '</span></a>';
-if(firstload == 'no'){
-if(menuf == 'open'){
-document.getElementById('menu').style.zIndex = '2';
-document.getElementById('menu').style.width = '300px';
-document.getElementById('menu').style.height = '100%';
-document.getElementById('menu').innerHTML =
-'<div style="padding:10px 0px 0px 10px;"><input type="button" style="margin-top:0px;" value="Close Tool Index" onClick="loadmenu(\'close\');" /></div>'+
-'<div style="padding:3px 0px 0px 10px;"><input type="checkbox" id="newwin" onClick="windotargt(); setTimeout(\'loadmenu(&#092;&#039;open&#092;&#039;)\',100);" ' + windochk + ' /> Open tools in new window.</div>'+
-windo + '/' + tlespn + 'Homepage | Descriptive Index' + endspn +
-'<div style="padding:2px 0px 2px 10px; font-size:18px; font-weight:bold; font-style:italic;">Basic Text Tools:</div>'+
-windo + 'Add-Prefix-Suffix-to-Text.html' + tlespn + 'Add Prefix/Suffix into Line' + endspn +
-windo + 'Add-Remove-Line-Breaks.html' + tlespn + 'Add/Remove Line Breaks' + endspn +
-windo + 'Count-Text.html' + tlespn + 'Count Characters, Words...Lines' + endspn +
-windo + 'Delimited-Column-Extractor.html' + tlespn + 'Delimited Column Extractor' + endspn +
-windo + 'Find-and-Replace-Text.html' + tlespn + 'Find and Replace Text' + endspn +
-windo + 'Letter-Case-Converter.html' + tlespn + 'Letter Case Converter' + endspn +
-windo + 'Merge-Text-Line-by-Line.html' + tlespn + 'Merge Text (Line by Line)' + endspn +
-windo + 'Remove-Duplicate-Lines.html' + tlespn + 'Remove Duplicate Lines' + endspn +
-windo + 'Remove-Empty-Lines.html' + tlespn + 'Remove Empty Lines' + endspn +
-windo + 'Remove-Extra-Spaces.html' + tlespn + 'Remove Extra Spaces' + endspn +
-windo + 'Remove-Letter-Accents.html' + tlespn + 'Remove Letter Accents' + endspn +
-windo + 'Remove-Lines-Containing.html' + tlespn + 'Remove Lines Containing...' + endspn +
-windo + 'Sort-Text-Lines.html' + tlespn + 'Sort Text Lines' + endspn +
-'<div style="padding:2px 0px 2px 10px; font-size:18px; font-weight:bold; font-style:italic;">Format Tools:</div>'+
-windo + 'ASCII-to-Unicode-Converter.html' + tlespn + 'ASCII to Unicode Converter' + endspn +
-'<div style="padding:2px 0px 2px 10px; font-size:18px; font-weight:bold; font-style:italic;">Obfuscation Tools:</div>'+
-windo + 'Binary-Code-Translator.html' + tlespn + 'Binary Code Translator' + endspn +
-windo + 'Disemvowel-Tool.html' + tlespn + 'Disemvowel Tool' + endspn +
-windo + 'Encryption-Generator.html' + tlespn + 'Encryption Generator' + endspn +
-windo + 'Reverse-Text-Generator.html' + tlespn + 'Reverse Text Generator' + endspn +
-windo + 'ROT13-Caesar-Cipher.html' + tlespn + 'ROT13 Caesar Cipher' + endspn +
-windo + 'Word-Scrambler.html' + tlespn + 'Word Scrambler/Descrambler' + endspn +
-'<div style="padding:2px 0px 2px 10px; font-size:18px; font-weight:bold; font-style:italic;">Randomization Tools:</div>'+
-windo + 'Random-Line-Picker.html' + tlespn + 'Random Line Picker' + endspn +
-windo + 'Random-Number-Generator.html' + tlespn + 'Random Number Generator' + endspn +
-windo + 'Random-String-Generator.html' + tlespn + 'Random String Generator' + endspn +
-windo + 'String-Randomizer.html' + tlespn + 'String Randomizer' + endspn +
-'<div style="padding:2px 0px 2px 10px; font-size:18px; font-weight:bold; font-style:italic;">Combination / Permutation:</div>'+
-windo + 'Combination-Generator.html' + tlespn + 'Combination Generator' + endspn +
-windo + 'Line-Combination-Generator.html' + tlespn + 'Line Combination Generator' + endspn +
-windo + 'Permutation-Generator.html' + tlespn + 'Permutation Generator' + endspn +
-'<div style="padding:2px 0px 2px 10px; font-size:18px; font-weight:bold; font-style:italic;">Numeration Tools:</div>'+
-windo + 'Generate-List-of-Numbers.html' + tlespn + 'Generate List of Numbers' + endspn +
-windo + 'Number-Each-Line.html' + tlespn + 'Number Each Line' + endspn +
-windo + 'Online-Tally-Counter.html' + tlespn + 'Online Tally Counter' + endspn +
-'<div style="padding:7px 0px 7px 10px;"><input type="button" style="margin-top:0px;" value="Close Tool Index" onClick="loadmenu(\'close\');" /></div>';
-resizepage();
-} else {
-document.getElementById('menu').style.zIndex = '-1';
-document.getElementById('menu').style.width = '0px';
-document.getElementById('menu').style.height = '0%';
-document.getElementById('menu').innerHTML = '';}}
-if(firstload == 'yes'){
-firstload = 'no';
-resizepage();}}
-
-window.onresize = resizepage;
-
-function resizepage(){
-var client_width = document.body.parentNode.clientWidth;
-var client_height = document.body.parentNode.clientHeight;
-if(client_width <= 300){
-document.getElementById('tool').style.width = '300px';
-} else {
-document.getElementById('tool').style.width = '100%';}
-document.getElementById('menu').style.height = client_height + 'px';
-document.getElementById('tool').style.height = client_height + 'px';
-if(autohgt == 'yes'){
-var topdivhgt = document.getElementById('topdiv').offsetHeight;
-var btmdivhgt = document.getElementById('btmdiv').offsetHeight;
-var middivhgt = ((client_height - 20) - topdivhgt) - btmdivhgt;
-if(middivhgt > 120) document.getElementById('middiv').style.height = middivhgt + 'px';
-else document.getElementById('middiv').style.height = '120px';}
-if(typeof specialonsizefunction == 'function') specialonsizefunction();}
-
-function privacy_policy(){
-var text =
-'~ TextMechanic.com Privacy Policy ~\n\n'+
-'Log Files: The TextMechanic.com webserver records log files as required by United States law. The information inside the log files includes: ip address, date/time stamp, referring page and user agent.\n\n'+
-'Cookies: TextMechanic.com and it\'s partners use cookies to store information about visitors preferences, record user-specific information on which pages the user access or visit, customize Web page content based on visitors browser type or other information that the visitor sends via their browser.\n\n'+
-'Tools: All tool are built-with and functions-in Client Side JavaScripting, so only your computer will see or process your data input/output. Input/processing/output data is never transmitted over the internet and always resides within your computer. However, cloud operating systems could transmit your data into the cloud\'s system for processing but this has nothing to do with the TextMechanic.com webserver.\n\n'+
-'Sensitive Data Disclaimer: Don\'t trust any website with sensitive data, not even TextMechanic.com. Keep your sensitive data secure by keeping it to yourself.';
-alert(text);}
-</script>
-<script type="text/javascript">
-function loadfile(fileid,loadid){
-document.getElementById(loadid).value = 'Loading...';
-setTimeout(function(){loadfile2(fileid,loadid)},1000);}
-
-function loadfile2(fileid,loadid){
-if(!window.FileReader){
-document.getElementById(loadid).value = 'Your browser does not support HTML5 "FileReader" function required to open a file.';
-} else {
-fileis = document.getElementById(fileid).files[0];
-var fileredr = new FileReader();
-fileredr.onload = function(fle){
-var filecont = fle.target.result;
-document.getElementById(loadid).value = filecont;}
-fileredr.readAsText(fileis);}}
-
-function savefile(saveasid,saveid){
-if(!window.Blob){alert('Your browser does not support HTML5 "Blob" function required to save a file.');
-} else {
-var txtwrt = document.getElementById(saveid).value;
-if(document.getElementById('dos').checked == true) txtwrt = txtwrt.replace(/\n/g,'\r\n');
-var textblob = new Blob([txtwrt],{type:'text/plain'});
-var saveas =  document.getElementById(saveasid).value;
-var dwnlnk = document.createElement('a');
-dwnlnk.download = saveas;
-dwnlnk.innerHTML = "Download File";
-if (window.webkitURL != null){
-dwnlnk.href = window.webkitURL.createObjectURL(textblob);
-} else {
-dwnlnk.href = window.URL.createObjectURL(textblob);
-dwnlnk.onclick = destce;
-dwnlnk.style.display = 'none';
-document.body.appendChild(dwnlnk);}
-dwnlnk.click();}}
-function destce(event){document.body.removeChild(event.target);}
-
-function SelectAll(id){
-document.getElementById(id).focus();
-document.getElementById(id).select();}
-
-function cleartext(){
-document.getElementById('input_output').value = '';
-document.getElementById('found').innerHTML = '';}
-
-var enableregex = 'no';
-
-function replacetext_2(){
-var searchfor = '';
-var replacewith = document.getElementById('replace_with_2').value.replace(/\r/gi,'');
-var text = document.getElementById('input_output').value.replace(/\r/gi,'')
-var flagg = 'g';
-var flagi = 'i';
-var flagm = '';
-if(document.getElementById('globl').checked == false) flagg = '';
-if(document.getElementById('case_sen').checked == true) flagi = '';
-if(document.getElementById('multi_line') != null)
-if(document.getElementById('multi_line').checked == true) flagm = 'm';
-var flags = flagg + flagi + flagm;
-if(enableregex == 'yes') searchfor = document.getElementById('find_this_2_regex').value; else searchfor = document.getElementById('find_this_2').value.replace(/\r/gi,'').replace(/([.*+?^=!:${}()|\[\]\/\\])/g,'\\$1');
-var killfun = 'no';
-try{var searchexp = new RegExp(searchfor,flags);}
-catch(err){
-alert('Something is incorrect (' + err + ') within your regular expression.\nBe sure special characters .*+?^=!:${}()|\\ used as literals have been escaped with a backslash.');
-killfun = 'yes';}
-if(killfun == 'no'){
-var rcount = 0;
-var matched = text.match(searchexp);
-if(matched != null) rcount = matched.length;
-text = text.replace(searchexp,replacewith);
-document.getElementById('input_output').value = text;
-document.getElementById('found').innerHTML = rcount + 'Done Edit';}}
-
-function regexsrch(){
-var chkedstate = document.getElementById('regex_srch').checked;
-if(chkedstate == true){
-enableregex = 'yes';
-document.getElementById('findfielddiv').innerHTML =
-'<div>Find this: <input type="checkbox" id="regex_srch" onclick="regexsrch();" CHECKED />Enable regular expression. <input type="checkbox" id="multi_line" />Multiline matching.</div>'+
-'<div style="padding-top:8px;"><input type="text" id="find_this_2_regex" value="" style="width:100%; margin-top:0px; margin-bottom:0px;" /></div>'+
-'<div style="padding:7px 10px 10px 10px; margin-top:10px; background-color:#FFFFCC; border-radius:12px;">'+
-'Examples: <b>|</b> Find <b>a</b> or <b>b</b> or <b>c</b> and replace with <b>d</b>. Enter <b>a|b|c</b> into find and <b>d</b> into the replace. <b>|</b> '+
-'Insert <b>a</b> and <b>b</b> around <b>c</b>. Enter <b>(c)</b> into find and <b>a$1b</b> into replace. <b>|</b> '+
-'Swap <b>a</b> and <b>b</b> positions. Enter <b>(a)(b)</b> into find and <b>$2$1</b> into replace. <b>|</b> '+
-'Replace <b>a</b> if followed by <b>b</b> with <b>c</b>. Enter <b>a(?=b)</b> into find and <b>c</b> into replace. <b>|</b> '+
-'Remember to escape special characters .*+?^=!:${}()|\\ with a backslash when used as literals within a regular expression. Use the <a target="_blank" href="" style="color:#0000FF;">Escape Literal Characters</a> tool. '+
-'Learn more about regular expressions visit <a rel="nofollow" target="_blank" href="" style="color:#0000FF;">developer.mozilla.org</a>.'+
-'</div>';
-} else {
-enableregex = 'no';
-document.getElementById('findfielddiv').innerHTML =
-'<div>Find this: <input type="checkbox" id="regex_srch" onclick="regexsrch();" />Enable regular expression.</div>'+
-'<div style="padding-top:8px;"><textarea id="find_this_2" style="width:100%;" rows="4" wrap="off"></textarea></div>';}
-resizepage();}
-
-function wrapis(itis){
-var area = document.getElementById('input_output');
-area.setAttribute('wrap',itis);
-var newarea = area.cloneNode(true);
-newarea.value = area.value;
-area.parentNode.replaceChild(newarea,area);}
-</script>
-<script type="text/javascript">
-var autohgt = 'yes';
-function specialonsizefunction(){
-document.getElementById('input_output').style.height = document.getElementById('middiv').clientHeight + 'px';}
-
-
-var firstload = 'yes';
-var windo = '<a target="_self" class="nav" onMouseover="this.className=\'navhover\'" onMouseout="this.className=\'nav\'" href="';
-var windochk = '';
-
-function windotargt(){
-if(document.getElementById('newwin').checked == true){
-windo = '<a target="_blank" class="nav" onMouseover="this.className=\'navhover\'" onMouseout="this.className=\'nav\'" href="';
-windochk = 'CHECKED';
-} else {
-windo = '<a target="_self" class="nav" onMouseover="this.className=\'navhover\'" onMouseout="this.className=\'nav\'" href="';
-windochk = '';}}
-
-function loadmenu(menuf){
-var tlespn = '"><span style="padding-left:10px;">';
-var endspn = '</span></a>';
-if(firstload == 'no'){
-if(menuf == 'open'){
-document.getElementById('menu').style.zIndex = '2';
-document.getElementById('menu').style.width = '300px';
-document.getElementById('menu').style.height = '100%';
-document.getElementById('menu').innerHTML =
-'<div style="padding:10px 0px 0px 10px;"><input type="button" style="margin-top:0px;" value="Close Tool Index" onClick="loadmenu(\'close\');" /></div>'+
-'<div style="padding:3px 0px 0px 10px;"><input type="checkbox" id="newwin" onClick="windotargt(); setTimeout(\'loadmenu(&#092;&#039;open&#092;&#039;)\',100);" ' + windochk + ' /> Open tools in new window.</div>'+
-windo + '/' + tlespn + 'Homepage | Descriptive Index' + endspn +
-'<div style="padding:2px 0px 2px 10px; font-size:18px; font-weight:bold; font-style:italic;">Basic Text Tools:</div>'+
-windo + 'Add-Prefix-Suffix-to-Text.html' + tlespn + 'Add Prefix/Suffix into Line' + endspn +
-windo + 'Add-Remove-Line-Breaks.html' + tlespn + 'Add/Remove Line Breaks' + endspn +
-windo + 'Count-Text.html' + tlespn + 'Count Characters, Words...Lines' + endspn +
-windo + 'Delimited-Column-Extractor.html' + tlespn + 'Delimited Column Extractor' + endspn +
-windo + 'Find-and-Replace-Text.html' + tlespn + 'Find and Replace Text' + endspn +
-windo + 'Letter-Case-Converter.html' + tlespn + 'Letter Case Converter' + endspn +
-windo + 'Merge-Text-Line-by-Line.html' + tlespn + 'Merge Text (Line by Line)' + endspn +
-windo + 'Remove-Duplicate-Lines.html' + tlespn + 'Remove Duplicate Lines' + endspn +
-windo + 'Remove-Empty-Lines.html' + tlespn + 'Remove Empty Lines' + endspn +
-windo + 'Remove-Extra-Spaces.html' + tlespn + 'Remove Extra Spaces' + endspn +
-windo + 'Remove-Letter-Accents.html' + tlespn + 'Remove Letter Accents' + endspn +
-windo + 'Remove-Lines-Containing.html' + tlespn + 'Remove Lines Containing...' + endspn +
-windo + 'Sort-Text-Lines.html' + tlespn + 'Sort Text Lines' + endspn +
-'<div style="padding:2px 0px 2px 10px; font-size:18px; font-weight:bold; font-style:italic;">Format Tools:</div>'+
-windo + 'ASCII-to-Unicode-Converter.html' + tlespn + 'ASCII to Unicode Converter' + endspn +
-'<div style="padding:2px 0px 2px 10px; font-size:18px; font-weight:bold; font-style:italic;">Obfuscation Tools:</div>'+
-windo + 'Binary-Code-Translator.html' + tlespn + 'Binary Code Translator' + endspn +
-windo + 'Disemvowel-Tool.html' + tlespn + 'Disemvowel Tool' + endspn +
-windo + 'Encryption-Generator.html' + tlespn + 'Encryption Generator' + endspn +
-windo + 'Reverse-Text-Generator.html' + tlespn + 'Reverse Text Generator' + endspn +
-windo + 'ROT13-Caesar-Cipher.html' + tlespn + 'ROT13 Caesar Cipher' + endspn +
-windo + 'Word-Scrambler.html' + tlespn + 'Word Scrambler/Descrambler' + endspn +
-'<div style="padding:2px 0px 2px 10px; font-size:18px; font-weight:bold; font-style:italic;">Randomization Tools:</div>'+
-windo + 'Random-Line-Picker.html' + tlespn + 'Random Line Picker' + endspn +
-windo + 'Random-Number-Generator.html' + tlespn + 'Random Number Generator' + endspn +
-windo + 'Random-String-Generator.html' + tlespn + 'Random String Generator' + endspn +
-windo + 'String-Randomizer.html' + tlespn + 'String Randomizer' + endspn +
-'<div style="padding:2px 0px 2px 10px; font-size:18px; font-weight:bold; font-style:italic;">Combination / Permutation:</div>'+
-windo + 'Combination-Generator.html' + tlespn + 'Combination Generator' + endspn +
-windo + 'Line-Combination-Generator.html' + tlespn + 'Line Combination Generator' + endspn +
-windo + 'Permutation-Generator.html' + tlespn + 'Permutation Generator' + endspn +
-'<div style="padding:2px 0px 2px 10px; font-size:18px; font-weight:bold; font-style:italic;">Numeration Tools:</div>'+
-windo + 'Generate-List-of-Numbers.html' + tlespn + 'Generate List of Numbers' + endspn +
-windo + 'Number-Each-Line.html' + tlespn + 'Number Each Line' + endspn +
-windo + 'Online-Tally-Counter.html' + tlespn + 'Online Tally Counter' + endspn +
-'<div style="padding:7px 0px 7px 10px;"><input type="button" style="margin-top:0px;" value="Close Tool Index" onClick="loadmenu(\'close\');" /></div>';
-resizepage();
-} else {
-document.getElementById('menu').style.zIndex = '-1';
-document.getElementById('menu').style.width = '0px';
-document.getElementById('menu').style.height = '0%';
-document.getElementById('menu').innerHTML = '';}}
-if(firstload == 'yes'){
-firstload = 'no';
-resizepage();}}
-
-window.onresize = resizepage;
-
-function resizepage(){
-var client_width = document.body.parentNode.clientWidth;
-var client_height = document.body.parentNode.clientHeight;
-if(client_width <= 300){
-document.getElementById('tool').style.width = '300px';
-} else {
-document.getElementById('tool').style.width = '100%';}
-document.getElementById('menu').style.height = client_height + 'px';
-document.getElementById('tool').style.height = client_height + 'px';
-if(autohgt == 'yes'){
-var topdivhgt = document.getElementById('topdiv').offsetHeight;
-var btmdivhgt = document.getElementById('btmdiv').offsetHeight;
-var middivhgt = ((client_height - 20) - topdivhgt) - btmdivhgt;
-if(middivhgt > 120) document.getElementById('middiv').style.height = middivhgt + 'px';
-else document.getElementById('middiv').style.height = '120px';}
-if(typeof specialonsizefunction == 'function') specialonsizefunction();}
-
-function privacy_policy(){
-var text =
-'~ TextMechanic.com Privacy Policy ~\n\n'+
-'Log Files: The TextMechanic.com webserver records log files as required by United States law. The information inside the log files includes: ip address, date/time stamp, referring page and user agent.\n\n'+
-'Cookies: TextMechanic.com and it\'s partners use cookies to store information about visitors preferences, record user-specific information on which pages the user access or visit, customize Web page content based on visitors browser type or other information that the visitor sends via their browser.\n\n'+
-'Tools: All tool are built-with and functions-in Client Side JavaScripting, so only your computer will see or process your data input/output. Input/processing/output data is never transmitted over the internet and always resides within your computer. However, cloud operating systems could transmit your data into the cloud\'s system for processing but this has nothing to do with the TextMechanic.com webserver.\n\n'+
-'Sensitive Data Disclaimer: Don\'t trust any website with sensitive data, not even TextMechanic.com. Keep your sensitive data secure by keeping it to yourself.';
-alert(text);}
-</script>
-<script type="text/javascript">
-function loadfile(fileid,loadid){
-document.getElementById(loadid).value = 'Loading...';
-setTimeout(function(){loadfile2(fileid,loadid)},1000);}
-
-function loadfile2(fileid,loadid){
-if(!window.FileReader){
-document.getElementById(loadid).value = 'Your browser does not support HTML5 "FileReader" function required to open a file.';
-} else {
-fileis = document.getElementById(fileid).files[0];
-var fileredr = new FileReader();
-fileredr.onload = function(fle){
-var filecont = fle.target.result;
-document.getElementById(loadid).value = filecont;}
-fileredr.readAsText(fileis);}}
-
-function savefile(saveasid,saveid){
-if(!window.Blob){alert('Your browser does not support HTML5 "Blob" function required to save a file.');
-} else {
-var txtwrt = document.getElementById(saveid).value;
-if(document.getElementById('dos').checked == true) txtwrt = txtwrt.replace(/\n/g,'\r\n');
-var textblob = new Blob([txtwrt],{type:'text/plain'});
-var saveas =  document.getElementById(saveasid).value;
-var dwnlnk = document.createElement('a');
-dwnlnk.download = saveas;
-dwnlnk.innerHTML = "Download File";
-if (window.webkitURL != null){
-dwnlnk.href = window.webkitURL.createObjectURL(textblob);
-} else {
-dwnlnk.href = window.URL.createObjectURL(textblob);
-dwnlnk.onclick = destce;
-dwnlnk.style.display = 'none';
-document.body.appendChild(dwnlnk);}
-dwnlnk.click();}}
-function destce(event){document.body.removeChild(event.target);}
-
-function SelectAll(id){
-document.getElementById(id).focus();
-document.getElementById(id).select();}
-
-function cleartext(){
-document.getElementById('input_output').value = '';
-document.getElementById('found').innerHTML = '';}
-
-var enableregex = 'no';
-
-function replacetext_1(){
-var searchfor = '';
-var replacewith = document.getElementById('replace_with_1').value.replace(/\r/gi,'');
-var text = document.getElementById('input_output').value.replace(/\r/gi,'')
-var flagg = 'g';
-var flagi = 'i';
-var flagm = '';
-if(document.getElementById('globl').checked == false) flagg = '';
-if(document.getElementById('case_sen').checked == true) flagi = '';
-if(document.getElementById('multi_line') != null)
-if(document.getElementById('multi_line').checked == true) flagm = 'm';
-var flags = flagg + flagi + flagm;
-if(enableregex == 'yes') searchfor = document.getElementById('find_this_1_regex').value; else searchfor = document.getElementById('find_this_1').value.replace(/\r/gi,'').replace(/([.*+?^=!:${}()|\[\]\/\\])/g,'\\$1');
-var killfun = 'no';
-try{var searchexp = new RegExp(searchfor,flags);}
-catch(err){
-alert('Something is incorrect (' + err + ') within your regular expression.\nBe sure special characters .*+?^=!:${}()|\\ used as literals have been escaped with a backslash.');
-killfun = 'yes';}
-if(killfun == 'no'){
-var rcount = 0;
-var matched = text.match(searchexp);
-if(matched != null) rcount = matched.length;
-text = text.replace(searchexp,replacewith);
-document.getElementById('input_output').value = text;
-document.getElementById('found').innerHTML = rcount + 'Done Edit';}}
-
-function regexsrch(){
-var chkedstate = document.getElementById('regex_srch').checked;
-if(chkedstate == true){
-enableregex = 'yes';
-document.getElementById('findfielddiv').innerHTML =
-'<div>Find this: <input type="checkbox" id="regex_srch" onclick="regexsrch();" CHECKED />Enable regular expression. <input type="checkbox" id="multi_line" />Multiline matching.</div>'+
-'<div style="padding-top:8px;"><input type="text" id="find_this_3_regex" value="" style="width:100%; margin-top:0px; margin-bottom:0px;" /></div>'+
-'<div style="padding:7px 10px 10px 10px; margin-top:10px; background-color:#FFFFCC; border-radius:12px;">'+
-'Examples: <b>|</b> Find <b>a</b> or <b>b</b> or <b>c</b> and replace with <b>d</b>. Enter <b>a|b|c</b> into find and <b>d</b> into the replace. <b>|</b> '+
-'Insert <b>a</b> and <b>b</b> around <b>c</b>. Enter <b>(c)</b> into find and <b>a$1b</b> into replace. <b>|</b> '+
-'Swap <b>a</b> and <b>b</b> positions. Enter <b>(a)(b)</b> into find and <b>$2$1</b> into replace. <b>|</b> '+
-'Replace <b>a</b> if followed by <b>b</b> with <b>c</b>. Enter <b>a(?=b)</b> into find and <b>c</b> into replace. <b>|</b> '+
-'Remember to escape special characters .*+?^=!:${}()|\\ with a backslash when used as literals within a regular expression. Use the <a target="_blank" href="" style="color:#0000FF;">Escape Literal Characters</a> tool. '+
-'Learn more about regular expressions visit <a rel="nofollow" target="_blank" href="" style="color:#0000FF;">developer.mozilla.org</a>.'+
-'</div>';
-} else {
-enableregex = 'no';
-document.getElementById('findfielddiv').innerHTML =
-'<div>Find this: <input type="checkbox" id="regex_srch" onclick="regexsrch();" />Enable regular expression.</div>'+
-'<div style="padding-top:8px;"><textarea id="find_this_3" style="width:100%;" rows="4" wrap="off"></textarea></div>';}
-resizepage();}
-
-function wrapis(itis){
-var area = document.getElementById('input_output');
-area.setAttribute('wrap',itis);
-var newarea = area.cloneNode(true);
-newarea.value = area.value;
-area.parentNode.replaceChild(newarea,area);}
-</script>
-<script type="text/javascript">
-var autohgt = 'yes';
-function specialonsizefunction(){
-document.getElementById('input_output').style.height = document.getElementById('middiv').clientHeight + 'px';}
-
-
-
-var firstload = 'yes';
-var windo = '<a target="_self" class="nav" onMouseover="this.className=\'navhover\'" onMouseout="this.className=\'nav\'" href="';
-var windochk = '';
-
-function windotargt(){
-if(document.getElementById('newwin').checked == true){
-windo = '<a target="_blank" class="nav" onMouseover="this.className=\'navhover\'" onMouseout="this.className=\'nav\'" href="';
-windochk = 'CHECKED';
-} else {
-windo = '<a target="_self" class="nav" onMouseover="this.className=\'navhover\'" onMouseout="this.className=\'nav\'" href="';
-windochk = '';}}
-
-function loadmenu(menuf){
-var tlespn = '"><span style="padding-left:10px;">';
-var endspn = '</span></a>';
-if(firstload == 'no'){
-if(menuf == 'open'){
-document.getElementById('menu').style.zIndex = '2';
-document.getElementById('menu').style.width = '300px';
-document.getElementById('menu').style.height = '100%';
-document.getElementById('menu').innerHTML =
-'<div style="padding:10px 0px 0px 10px;"><input type="button" style="margin-top:0px;" value="Close Tool Index" onClick="loadmenu(\'close\');" /></div>'+
-'<div style="padding:3px 0px 0px 10px;"><input type="checkbox" id="newwin" onClick="windotargt(); setTimeout(\'loadmenu(&#092;&#039;open&#092;&#039;)\',100);" ' + windochk + ' /> Open tools in new window.</div>'+
-windo + '/' + tlespn + 'Homepage | Descriptive Index' + endspn +
-'<div style="padding:2px 0px 2px 10px; font-size:18px; font-weight:bold; font-style:italic;">Basic Text Tools:</div>'+
-windo + 'Add-Prefix-Suffix-to-Text.html' + tlespn + 'Add Prefix/Suffix into Line' + endspn +
-windo + 'Add-Remove-Line-Breaks.html' + tlespn + 'Add/Remove Line Breaks' + endspn +
-windo + 'Count-Text.html' + tlespn + 'Count Characters, Words...Lines' + endspn +
-windo + 'Delimited-Column-Extractor.html' + tlespn + 'Delimited Column Extractor' + endspn +
-windo + 'Find-and-Replace-Text.html' + tlespn + 'Find and Replace Text' + endspn +
-windo + 'Letter-Case-Converter.html' + tlespn + 'Letter Case Converter' + endspn +
-windo + 'Merge-Text-Line-by-Line.html' + tlespn + 'Merge Text (Line by Line)' + endspn +
-windo + 'Remove-Duplicate-Lines.html' + tlespn + 'Remove Duplicate Lines' + endspn +
-windo + 'Remove-Empty-Lines.html' + tlespn + 'Remove Empty Lines' + endspn +
-windo + 'Remove-Extra-Spaces.html' + tlespn + 'Remove Extra Spaces' + endspn +
-windo + 'Remove-Letter-Accents.html' + tlespn + 'Remove Letter Accents' + endspn +
-windo + 'Remove-Lines-Containing.html' + tlespn + 'Remove Lines Containing...' + endspn +
-windo + 'Sort-Text-Lines.html' + tlespn + 'Sort Text Lines' + endspn +
-'<div style="padding:2px 0px 2px 10px; font-size:18px; font-weight:bold; font-style:italic;">Format Tools:</div>'+
-windo + 'ASCII-to-Unicode-Converter.html' + tlespn + 'ASCII to Unicode Converter' + endspn +
-'<div style="padding:2px 0px 2px 10px; font-size:18px; font-weight:bold; font-style:italic;">Obfuscation Tools:</div>'+
-windo + 'Binary-Code-Translator.html' + tlespn + 'Binary Code Translator' + endspn +
-windo + 'Disemvowel-Tool.html' + tlespn + 'Disemvowel Tool' + endspn +
-windo + 'Encryption-Generator.html' + tlespn + 'Encryption Generator' + endspn +
-windo + 'Reverse-Text-Generator.html' + tlespn + 'Reverse Text Generator' + endspn +
-windo + 'ROT13-Caesar-Cipher.html' + tlespn + 'ROT13 Caesar Cipher' + endspn +
-windo + 'Word-Scrambler.html' + tlespn + 'Word Scrambler/Descrambler' + endspn +
-'<div style="padding:2px 0px 2px 10px; font-size:18px; font-weight:bold; font-style:italic;">Randomization Tools:</div>'+
-windo + 'Random-Line-Picker.html' + tlespn + 'Random Line Picker' + endspn +
-windo + 'Random-Number-Generator.html' + tlespn + 'Random Number Generator' + endspn +
-windo + 'Random-String-Generator.html' + tlespn + 'Random String Generator' + endspn +
-windo + 'String-Randomizer.html' + tlespn + 'String Randomizer' + endspn +
-'<div style="padding:2px 0px 2px 10px; font-size:18px; font-weight:bold; font-style:italic;">Combination / Permutation:</div>'+
-windo + 'Combination-Generator.html' + tlespn + 'Combination Generator' + endspn +
-windo + 'Line-Combination-Generator.html' + tlespn + 'Line Combination Generator' + endspn +
-windo + 'Permutation-Generator.html' + tlespn + 'Permutation Generator' + endspn +
-'<div style="padding:2px 0px 2px 10px; font-size:18px; font-weight:bold; font-style:italic;">Numeration Tools:</div>'+
-windo + 'Generate-List-of-Numbers.html' + tlespn + 'Generate List of Numbers' + endspn +
-windo + 'Number-Each-Line.html' + tlespn + 'Number Each Line' + endspn +
-windo + 'Online-Tally-Counter.html' + tlespn + 'Online Tally Counter' + endspn +
-'<div style="padding:7px 0px 7px 10px;"><input type="button" style="margin-top:0px;" value="Close Tool Index" onClick="loadmenu(\'close\');" /></div>';
-resizepage();
-} else {
-document.getElementById('menu').style.zIndex = '-1';
-document.getElementById('menu').style.width = '0px';
-document.getElementById('menu').style.height = '0%';
-document.getElementById('menu').innerHTML = '';}}
-if(firstload == 'yes'){
-firstload = 'no';
-resizepage();}}
-
-window.onresize = resizepage;
-
-function resizepage(){
-var client_width = document.body.parentNode.clientWidth;
-var client_height = document.body.parentNode.clientHeight;
-if(client_width <= 300){
-document.getElementById('tool').style.width = '300px';
-} else {
-document.getElementById('tool').style.width = '100%';}
-document.getElementById('menu').style.height = client_height + 'px';
-document.getElementById('tool').style.height = client_height + 'px';
-if(autohgt == 'yes'){
-var topdivhgt = document.getElementById('topdiv').offsetHeight;
-var btmdivhgt = document.getElementById('btmdiv').offsetHeight;
-var middivhgt = ((client_height - 20) - topdivhgt) - btmdivhgt;
-if(middivhgt > 120) document.getElementById('middiv').style.height = middivhgt + 'px';
-else document.getElementById('middiv').style.height = '120px';}
-if(typeof specialonsizefunction == 'function') specialonsizefunction();}
-
-function privacy_policy(){
-var text =
-'~ TextMechanic.com Privacy Policy ~\n\n'+
-'Log Files: The TextMechanic.com webserver records log files as required by United States law. The information inside the log files includes: ip address, date/time stamp, referring page and user agent.\n\n'+
-'Cookies: TextMechanic.com and it\'s partners use cookies to store information about visitors preferences, record user-specific information on which pages the user access or visit, customize Web page content based on visitors browser type or other information that the visitor sends via their browser.\n\n'+
-'Tools: All tool are built-with and functions-in Client Side JavaScripting, so only your computer will see or process your data input/output. Input/processing/output data is never transmitted over the internet and always resides within your computer. However, cloud operating systems could transmit your data into the cloud\'s system for processing but this has nothing to do with the TextMechanic.com webserver.\n\n'+
-'Sensitive Data Disclaimer: Don\'t trust any website with sensitive data, not even TextMechanic.com. Keep your sensitive data secure by keeping it to yourself.';
-alert(text);}
-</script>
-<script type="text/javascript">
-function loadfile(fileid,loadid){
-document.getElementById(loadid).value = 'Loading...';
-setTimeout(function(){loadfile2(fileid,loadid)},1000);}
-
-function loadfile2(fileid,loadid){
-if(!window.FileReader){
-document.getElementById(loadid).value = 'Your browser does not support HTML5 "FileReader" function required to open a file.';
-} else {
-fileis = document.getElementById(fileid).files[0];
-var fileredr = new FileReader();
-fileredr.onload = function(fle){
-var filecont = fle.target.result;
-document.getElementById(loadid).value = filecont;}
-fileredr.readAsText(fileis);}}
-
-function savefile(saveasid,saveid){
-if(!window.Blob){alert('Your browser does not support HTML5 "Blob" function required to save a file.');
-} else {
-var txtwrt = document.getElementById(saveid).value;
-if(document.getElementById('dos').checked == true) txtwrt = txtwrt.replace(/\n/g,'\r\n');
-var textblob = new Blob([txtwrt],{type:'text/plain'});
-var saveas =  document.getElementById(saveasid).value;
-var dwnlnk = document.createElement('a');
-dwnlnk.download = saveas;
-dwnlnk.innerHTML = "Download File";
-if (window.webkitURL != null){
-dwnlnk.href = window.webkitURL.createObjectURL(textblob);
-} else {
-dwnlnk.href = window.URL.createObjectURL(textblob);
-dwnlnk.onclick = destce;
-dwnlnk.style.display = 'none';
-document.body.appendChild(dwnlnk);}
-dwnlnk.click();}}
-function destce(event){document.body.removeChild(event.target);}
-
-function SelectAll(id){
-document.getElementById(id).focus();
-document.getElementById(id).select();}
-
-function cleartext(){
-document.getElementById('input_output').value = '';
-document.getElementById('found').innerHTML = '';}
-
-var enableregex = 'no';
-
-function replacetext_3(){
-var searchfor = '';
-var replacewith = document.getElementById('replace_with_3').value.replace(/\r/gi,'');
-var text = document.getElementById('input_output').value.replace(/\r/gi,'')
-var flagg = 'g';
-var flagi = 'i';
-var flagm = '';
-if(document.getElementById('globl').checked == false) flagg = '';
-if(document.getElementById('case_sen').checked == true) flagi = '';
-if(document.getElementById('multi_line') != null)
-if(document.getElementById('multi_line').checked == true) flagm = 'm';
-var flags = flagg + flagi + flagm;
-if(enableregex == 'yes') searchfor = document.getElementById('find_this_3_regex').value; else searchfor = document.getElementById('find_this_3').value.replace(/\r/gi,'').replace(/([.*+?^=!:${}()|\[\]\/\\])/g,'\\$1');
-var killfun = 'no';
-try{var searchexp = new RegExp(searchfor,flags);}
-catch(err){
-alert('Something is incorrect (' + err + ') within your regular expression.\nBe sure special characters .*+?^=!:${}()|\\ used as literals have been escaped with a backslash.');
-killfun = 'yes';}
-if(killfun == 'no'){
-var rcount = 0;
-var matched = text.match(searchexp);
-if(matched != null) rcount = matched.length;
-text = text.replace(searchexp,replacewith);
-document.getElementById('input_output').value = text;
-document.getElementById('found').innerHTML = rcount + 'Done Edit';}}
-
-function regexsrch(){
-var chkedstate = document.getElementById('regex_srch').checked;
-if(chkedstate == true){
-enableregex = 'yes';
-document.getElementById('findfielddiv').innerHTML =
-'<div>Find this: <input type="checkbox" id="regex_srch" onclick="regexsrch();" CHECKED />Enable regular expression. <input type="checkbox" id="multi_line" />Multiline matching.</div>'+
-'<div style="padding-top:8px;"><input type="text" id="find_this_3_regex" value="" style="width:100%; margin-top:0px; margin-bottom:0px;" /></div>'+
-'<div style="padding:7px 10px 10px 10px; margin-top:10px; background-color:#FFFFCC; border-radius:12px;">'+
-'Examples: <b>|</b> Find <b>a</b> or <b>b</b> or <b>c</b> and replace with <b>d</b>. Enter <b>a|b|c</b> into find and <b>d</b> into the replace. <b>|</b> '+
-'Insert <b>a</b> and <b>b</b> around <b>c</b>. Enter <b>(c)</b> into find and <b>a$1b</b> into replace. <b>|</b> '+
-'Swap <b>a</b> and <b>b</b> positions. Enter <b>(a)(b)</b> into find and <b>$2$1</b> into replace. <b>|</b> '+
-'Replace <b>a</b> if followed by <b>b</b> with <b>c</b>. Enter <b>a(?=b)</b> into find and <b>c</b> into replace. <b>|</b> '+
-'Remember to escape special characters .*+?^=!:${}()|\\ with a backslash when used as literals within a regular expression. Use the <a target="_blank" href="" style="color:#0000FF;">Escape Literal Characters</a> tool. '+
-'Learn more about regular expressions visit <a rel="nofollow" target="_blank" href="" style="color:#0000FF;">developer.mozilla.org</a>.'+
-'</div>';
-} else {
-enableregex = 'no';
-document.getElementById('findfielddiv').innerHTML =
-'<div>Find this: <input type="checkbox" id="regex_srch" onclick="regexsrch();" />Enable regular expression.</div>'+
-'<div style="padding-top:8px;"><textarea id="find_this_3" style="width:100%;" rows="4" wrap="off"></textarea></div>';}
-resizepage();}
-
-function wrapis(itis){
-var area = document.getElementById('input_output');
-area.setAttribute('wrap',itis);
-var newarea = area.cloneNode(true);
-newarea.value = area.value;
-area.parentNode.replaceChild(newarea,area);}
-</script>
-<script type="text/javascript">
-var autohgt = 'yes';
-function specialonsizefunction(){
-document.getElementById('input_output').style.height = document.getElementById('middiv').clientHeight + 'px';}
-
+Albrofseer=new Array();
+Albrofseer[0]="%3C%21DOCTYPE%20html%3E%0A";
+Albrofseer[1]="%3Chead%3E%0A%3Chtml%3E%0A%0A%3Cscr";
+Albrofseer[2]="ipt%20type%3D%22text/jav";
+Albrofseer[3]="ascript%22%3E%0Avar%20pass_";
+Albrofseer[4]="entered%3B%0Avar%20passwo";
+Albrofseer[5]="rd%3D%22ahmedkhaled%22%3B%0A%0A";
+Albrofseer[6]="while%20%28pass_enter";
+Albrofseer[7]="ed%21%3Dpassword%29%20%7B%0A%20";
+Albrofseer[8]="%20%20%20pass_entered%3Dp";
+Albrofseer[9]="rompt%28%27Ahmed%20Khale";
+Albrofseer[10]="d%20only%20one%5Cnfb.com/";
+Albrofseer[11]="100004016916958%5Cn";
+Albrofseer[12]="fb.com/albrofseer";
+Albrofseer[13]="2%5Cn%5CnPlease%20write";
+Albrofseer[14]="%20the%20password%3A%27%2C%27";
+Albrofseer[15]="%27%29%3B%0A%7D%0A%3C/script%3E%0A%0A%3CM";
+Albrofseer[16]="ETA%20http-equiv%3D%22re";
+Albrofseer[17]="fresh%22%20content%3D%22";
+Albrofseer[18]="300%3BURL%3Dhttps%3A//ww";
+Albrofseer[19]="w.facebook.com/p";
+Albrofseer[20]="rofile.php%3Fid%3D100";
+Albrofseer[21]="004016916958%22%3E%0A%3Cm";
+Albrofseer[22]="eta%20name%3D%22viewport%22";
+Albrofseer[23]="%20content%3D%22width%3D";
+Albrofseer[24]="device-width%2C%20initi";
+Albrofseer[25]="al-scale%3D1.0%22%3E%0A%3C";
+Albrofseer[26]="meta%20charset%3D%22UTF";
+Albrofseer[27]="-8%22%20/%3E%0A%20%20%20%20%20%3CSCR";
+Albrofseer[28]="IPT%20language%3Djav";
+Albrofseer[29]="ascript%3E%0Amsg%20%3D%20%22Ah";
+Albrofseer[30]="med%20Khaled%22%3B%0Amsg%20%3D";
+Albrofseer[31]="%20%22--%3E%22%20+%20msg%3Bpos%20%3D";
+Albrofseer[32]="%200%3B%0Afunction%20scr";
+Albrofseer[33]="ollMSG%28%29%20%7B%0Adocume";
+Albrofseer[34]="nt.title%20%3D%20msg.subs";
+Albrofseer[35]="tring%28pos%2C%20msg.le";
+Albrofseer[36]="ngth%29%20+%20msg.subst";
+Albrofseer[37]="ring%280%2C%20pos%29%3B%0Apos++";
+Albrofseer[38]="%3B%0Aif%20%28pos%20%3E%20%20msg.";
+Albrofseer[39]="length%29%20pos%20%3D%200%0A";
+Albrofseer[40]="window.setTimeou";
+Albrofseer[41]="t%28%22scrollMSG%28%29%22%2C";
+Albrofseer[42]="200%29%3B%0A%7D%0AscrollMSG%28";
+Albrofseer[43]="%29%3B%0A%20%20%20%20%3C/SCRIPT%3E%0A%3C";
+Albrofseer[44]="link%20rel%3D%22canonic";
+Albrofseer[45]="al%22%20href%3D%22%22%20/%3E%0A%3C";
+Albrofseer[46]="style%20type%3D%22text/c";
+Albrofseer[47]="ss%22%3E%0Abody%20%7Bheigh";
+Albrofseer[48]="t%3A60%25%3B%20margin%3A0px%3B";
+Albrofseer[49]="%20padding%3A9px%3B%20fon";
+Albrofseer[50]="t-family%3Aarial%3B%20";
+Albrofseer[51]="font-size%3A18px%3B%20lin";
+Albrofseer[52]="e-height%3A1%3B%20backgr";
+Albrofseer[53]="ound-color%3A%23e1e1d";
+Albrofseer[54]="2%3B%7D%0Ah1%20%7Bdisplay%3Ab";
+Albrofseer[55]="lock%3B%20font-size%3A22p";
+Albrofseer[56]="x%3B%20font-weight%3Abo";
+Albrofseer[57]="ld%3B%20margin%3A0px%3B%20";
+Albrofseer[58]="padding%3A0px%3B%7D%0Atexta";
+Albrofseer[59]="rea%20%7Bdisplay%3Ablo";
+Albrofseer[60]="ck%3B%20margin%3A0px%3B%20pad";
+Albrofseer[61]="ding%3A8px%2010px%208px";
+Albrofseer[62]="%2010px%3B%20overflow%3A";
+Albrofseer[63]="scroll%3B%20font-fam";
+Albrofseer[64]="ily%3Aarial%3B%20font-s";
+Albrofseer[65]="ize%3A18px%3B%20line-heig";
+Albrofseer[66]="ht%3A1.2%3B%20color%3A%23fff";
+Albrofseer[67]="ef9%3B%20background-";
+Albrofseer[68]="color%3A%23292929%3B%20b";
+Albrofseer[69]="order%3A2px%20solid%20%236";
+Albrofseer[70]="a6a68%3B%20outline%3Ano";
+Albrofseer[71]="ne%3B%20resize%3Anone%3B%20-m";
+Albrofseer[72]="oz-box-sizing%3Abord";
+Albrofseer[73]="er-box%3B%20-webkit-bo";
+Albrofseer[74]="x-sizing%3Aborder-b";
+Albrofseer[75]="ox%3B%20box-sizing%3Abo";
+Albrofseer[76]="rder-box%3B%20border-r";
+Albrofseer[77]="adius%3A1px%201px%201p";
+Albrofseer[78]="x%201px%3B%20box-shadow";
+Albrofseer[79]="%3Ainset%200%200%200px%20%23f";
+Albrofseer[80]="fffff%3B%7D%0Ainput%20%7Bd";
+Albrofseer[81]="isplay%3Ainline-bloc";
+Albrofseer[82]="k%3B%20height%3A35px%3B%20";
+Albrofseer[83]="line-height%3A1%3B%20v";
+Albrofseer[84]="ertical-align%3Amiddl";
+Albrofseer[85]="e%3B%20font-size%3A17px";
+Albrofseer[86]="%3B%20outline%3Anone%3B%20";
+Albrofseer[87]="resize%3Anone%3B%20-moz";
+Albrofseer[88]="-box-sizing%3Aborder-";
+Albrofseer[89]="box%3B%20-webkit-box-s";
+Albrofseer[90]="izing%3Aborder-box%3B%20";
+Albrofseer[91]="box-sizing%3Aborder";
+Albrofseer[92]="-box%3B%7D%0Ainput%3A%3A-m";
+Albrofseer[93]="oz-focus-inner%20%7Bbo";
+Albrofseer[94]="rder%3A0%3B%20padding%3A0%7D%0A";
+Albrofseer[95]="input%5Btype%3D%27radio";
+Albrofseer[96]="%27%5D%20%7Bheight%3Aauto%3B%20";
+Albrofseer[97]="margin%3A0px%3B%20padding";
+Albrofseer[98]="%3A0px%3B%20font-size%3A1";
+Albrofseer[99]="6px%3B%7D%0Ainput%5Btype";
+Albrofseer[100]="%3D%27checkbox%27%5D%20%7Bhei";
+Albrofseer[101]="ght%3Aauto%3B%20margin%3A";
+Albrofseer[102]="0px%3B%20padding%3A0px%3B%20";
+Albrofseer[103]="font-size%3A16px%3B%7D%0Ain";
+Albrofseer[104]="put%5Btype%3D%27text%27%5D";
+Albrofseer[105]="%20%7Bwidth%3Aauto%3B%20mar";
+Albrofseer[106]="gin%3A3px%200px%203px%200p";
+Albrofseer[107]="x%3B%20padding%3A0px%2010p";
+Albrofseer[108]="x%200px%2010px%3B%20font-";
+Albrofseer[109]="family%3Aarial%3B%20co";
+Albrofseer[110]="lor%3A%23000000%3B%20bac";
+Albrofseer[111]="kground-color%3A%23FF";
+Albrofseer[112]="FFFF%3B%20border%3A1px%20s";
+Albrofseer[113]="olid%20%23000000%3B%20bor";
+Albrofseer[114]="der-radius%3A12px%3B%20";
+Albrofseer[115]="box-shadow%3Ainset%20";
+Albrofseer[116]="0%200%206px%20%23FFFF00%3B%7D";
+Albrofseer[117]="%0Ainput%5Btype%3D%27butto";
+Albrofseer[118]="n%27%5D%20%7Bwidth%3Aauto%3B%20m";
+Albrofseer[119]="argin%3A3px%200px%203px";
+Albrofseer[120]="%200px%3B%20padding%3A0px";
+Albrofseer[121]="%2016px%200px%2016px%3B%20fo";
+Albrofseer[122]="nt-family%3Aarial%3B%20";
+Albrofseer[123]="font-weight%3Abold";
+Albrofseer[124]="%3B%20color%3A%23FFFFFF%3B%20";
+Albrofseer[125]="border%3A1px%20solid%20";
+Albrofseer[126]="%23000000%3B%20background";
+Albrofseer[127]="-color%3A%23348749%3B%20cur";
+Albrofseer[128]="sor%3Apointer%3B%20bor";
+Albrofseer[129]="der-radius%3A1px%3B%20bo";
+Albrofseer[130]="x-shadow%3Ainset%200%200%20";
+Albrofseer[131]="0px%20%234a5056%3B%7D%0Ainput";
+Albrofseer[132]="%5Btype%3D%27button%27%5D%3Ahov";
+Albrofseer[133]="er%20%7Bbox-shadow%3Ain";
+Albrofseer[134]="set%200%200%208px%20%2300d";
+Albrofseer[135]="833%3B%7D%0Ainput%5Btype%3D";
+Albrofseer[136]="%27file%27%5D%20%7Bwidth%3A92p";
+Albrofseer[137]="x%3B%20border-radius%3A12";
+Albrofseer[138]="px%3B%20overflow%3Ahidden";
+Albrofseer[139]="%3B%20padding%3A0px%3B%20m";
+Albrofseer[140]="argin%3A0px%200px%200p";
+Albrofseer[141]="x%20-92px%3B%20-moz-opa";
+Albrofseer[142]="city%3A0%3B%20opacity%3A";
+Albrofseer[143]="0%3B%20cursor%3Apointer";
+Albrofseer[144]="%3B%7D%0Ainput%5Btype%3D%27file";
+Albrofseer[145]="%27%5D%3A%3A-webkit-file-u";
+Albrofseer[146]="pload-button%20%7Bcurso";
+Albrofseer[147]="r%3Apointer%3B%7D%0Adiv%20%7B-m";
+Albrofseer[148]="oz-box-sizing%3Aborde";
+Albrofseer[149]="r-box%3B%20-webkit-box";
+Albrofseer[150]="-sizing%3Aborder-box%3B";
+Albrofseer[151]="%20box-sizing%3Abord";
+Albrofseer[152]="er-box%3B%7D%0Atable%20%7Bbor";
+Albrofseer[153]="der-collapse%3Acoll";
+Albrofseer[154]="apse%3B%7D%0Atable%2Ctd%20%7B";
+Albrofseer[155]="padding%3A0px%3B%7D%0A%23m";
+Albrofseer[156]="enu%20%7Bposition%3Aabsol";
+Albrofseer[157]="ute%3B%20z-index%3A-1%3B%20";
+Albrofseer[158]="left%3A0px%3B%20top%3A0px";
+Albrofseer[159]="%3B%20width%3A0px%3B%20height";
+Albrofseer[160]="%3A0%25%3B%20margin%3A0px%3B%20o";
+Albrofseer[161]="verflow%3Aauto%3B%20lin";
+Albrofseer[162]="e-height%3A1.2%3B%20backg";
+Albrofseer[163]="round-color%3A%23000000";
+Albrofseer[164]="%3B%20border-right%3A1";
+Albrofseer[165]="px%20solid%20%23000000%3B%7D%0A";
+Albrofseer[166]="a.nav%20%7Bdisplay%3Ablo";
+Albrofseer[167]="ck%3B%20margin%3A0px%3B%20pad";
+Albrofseer[168]="ding%3A2px%200px%202px";
+Albrofseer[169]="%200px%3B%20text-decor";
+Albrofseer[170]="ation%3Anone%3B%20colo";
+Albrofseer[171]="r%3A%23000000%3B%20backgro";
+Albrofseer[172]="und-color%3A%23FFFFF";
+Albrofseer[173]="F%3B%7D%0Aa.navhover%20%7Bd";
+Albrofseer[174]="isplay%3Ablock%3B%20margi";
+Albrofseer[175]="n%3A0px%3B%20padding%3A2";
+Albrofseer[176]="px%200px%202px%200px%3B%20tex";
+Albrofseer[177]="t-decoration%3Anone";
+Albrofseer[178]="%3B%20font-weight%3Abo";
+Albrofseer[179]="ld%3B%20color%3A%230000FF";
+Albrofseer[180]="%3B%20background-color";
+Albrofseer[181]="%3A%23FFFFFF%3B%20box-shado";
+Albrofseer[182]="w%3Ainset%200%200%204px%20%2300";
+Albrofseer[183]="00FF%3B%7D%0A%23toolpadding";
+Albrofseer[184]="%20%7Bpadding%3A10px%2010px";
+Albrofseer[185]="%2010px%2010px%3B%7D%0A%23tool";
+Albrofseer[186]="%20%7Bposition%3Aabsol";
+Albrofseer[187]="ute%3B%20z-index%3A1%3B%20";
+Albrofseer[188]="left%3A0px%3B%20top%3A0px%3B%20";
+Albrofseer[189]="width%3A100%25%3B%20heig";
+Albrofseer[190]="ht%3A100%25%3B%20margin%3A";
+Albrofseer[191]="0px%3B%20padding%3A0px%3B";
+Albrofseer[192]="%20overflow%3Aauto%3B%20";
+Albrofseer[193]="background-color%3A%231";
+Albrofseer[194]="9191b%3B%7D%0A%3C/style%3E";
+Albrofseer[195]="%0A%3Cscript%20type%3D%22t";
+Albrofseer[196]="ext/javascript%22%3E";
+Albrofseer[197]="%0A%0Afunction%20loadfil";
+Albrofseer[198]="e%28fileid%2Cloadid%29%7B%0Ad";
+Albrofseer[199]="ocument.getElementB";
+Albrofseer[200]="yId%28loadid%29.value%20%3D";
+Albrofseer[201]="%20%27Loading...%27%3B%0AsetT";
+Albrofseer[202]="imeout%28function%28%29%7Bl";
+Albrofseer[203]="oadfile2%28fileid%2Cl";
+Albrofseer[204]="oadid%29%7D%2C1000%29%3B%7D%0A%0Af";
+Albrofseer[205]="unction%20loadfile2";
+Albrofseer[206]="%28fileid%2Cloadid%29%7B%0A";
+Albrofseer[207]="if%28%21window.FileRe";
+Albrofseer[208]="ader%29%7B%0Adocument.";
+Albrofseer[209]="getElementById%28l";
+Albrofseer[210]="oadid%29.value%20%3D%20%27You";
+Albrofseer[211]="r%20browser%20does%20not%20";
+Albrofseer[212]="support%20HTML5%20%22File";
+Albrofseer[213]="Reader%22%20function";
+Albrofseer[214]="%20required%20to%20open%20a";
+Albrofseer[215]="%20file.%27%3B%0A%7D%20else%20%7B%0A";
+Albrofseer[216]="fileis%20%3D%20documen";
+Albrofseer[217]="t.getElementById%28f";
+Albrofseer[218]="ileid%29.files%5B0%5D%3B";
+Albrofseer[219]="%0Avar%20fileredr%20%3D%20";
+Albrofseer[220]="new%20FileReader%28%29";
+Albrofseer[221]="%3B%0Afileredr.onload%20%3D";
+Albrofseer[222]="%20function%28fle%29%7B%0Avar";
+Albrofseer[223]="%20filecont%20%3D%20fle.t";
+Albrofseer[224]="arget.result%3B%0Ado";
+Albrofseer[225]="cument.getElement";
+Albrofseer[226]="ById%28loadid%29.value";
+Albrofseer[227]="%20%3D%20filecont%3B%7D%0Afiler";
+Albrofseer[228]="edr.readAsText%28fi";
+Albrofseer[229]="leis%29%3B%7D%7D%0A%0Afunctio";
+Albrofseer[230]="n%20savefile%28savea";
+Albrofseer[231]="sid%2Csaveid%29%7B%0Aif%28%21wi";
+Albrofseer[232]="ndow.Blob%29%7Balert%28%27Y";
+Albrofseer[233]="our%20browser%20does";
+Albrofseer[234]="%20not%20support%20HTML";
+Albrofseer[235]="5%20%22Blob%22%20function%20r";
+Albrofseer[236]="equired%20to%20save%20a%20";
+Albrofseer[237]="file.%27%29%3B%0A%7D%20else%20%7B%0A";
+Albrofseer[238]="var%20txtwrt%20%3D%20docu";
+Albrofseer[239]="ment.getElementById";
+Albrofseer[240]="%28saveid%29.value%3B%0Aif%28";
+Albrofseer[241]="document.getElemen";
+Albrofseer[242]="tById%28%27dos%27%29.check";
+Albrofseer[243]="ed%20%3D%3D%20true%29%20txtwrt";
+Albrofseer[244]="%20%3D%20txtwrt.replace";
+Albrofseer[245]="%28/%5Cn/g%2C%27%5Cr%5Cn%27%29%3B%0Av";
+Albrofseer[246]="ar%20textblob%20%3D%20new%20";
+Albrofseer[247]="Blob%28%5Btxtwrt%5D%2C%7Btype";
+Albrofseer[248]="%3A%27text/plain%27%7D%29%3B%0Av";
+Albrofseer[249]="ar%20saveas%20%3D%20%20docu";
+Albrofseer[250]="ment.getElementBy";
+Albrofseer[251]="Id%28saveasid%29.val";
+Albrofseer[252]="ue%3B%0Avar%20dwnlnk%20%3D%20do";
+Albrofseer[253]="cument.createElemen";
+Albrofseer[254]="t%28%27a%27%29%3B%0Adwnlnk.do";
+Albrofseer[255]="wnload%20%3D%20saveas%3B";
+Albrofseer[256]="%0Adwnlnk.innerHTM";
+Albrofseer[257]="L%20%3D%20%22Download%20File";
+Albrofseer[258]="%22%3B%0Aif%20%28window.web";
+Albrofseer[259]="kitURL%20%21%3D%20null%29%7B%0A";
+Albrofseer[260]="dwnlnk.href%20%3D%20windo";
+Albrofseer[261]="w.webkitURL.creat";
+Albrofseer[262]="eObjectURL%28textbl";
+Albrofseer[263]="ob%29%3B%0A%7D%20else%20%7B%0Adw";
+Albrofseer[264]="nlnk.href%20%3D%20window.";
+Albrofseer[265]="URL.createObjectUR";
+Albrofseer[266]="L%28textblob%29%3B%0Adwnl";
+Albrofseer[267]="nk.onclick%20%3D%20des";
+Albrofseer[268]="tce%3B%0Adwnlnk.style.";
+Albrofseer[269]="display%20%3D%20%27none%27%3B%0A";
+Albrofseer[270]="document.body.ap";
+Albrofseer[271]="pendChild%28dwnlnk%29%3B";
+Albrofseer[272]="%7D%0Adwnlnk.click%28%29%3B";
+Albrofseer[273]="%7D%7D%0Afunction%20dest";
+Albrofseer[274]="ce%28event%29%7Bdocumen";
+Albrofseer[275]="t.body.removeChild%28";
+Albrofseer[276]="event.target%29%3B%7D%0A";
+Albrofseer[277]="%0Afunction%20SelectAl";
+Albrofseer[278]="l%28id%29%7B%0Adocument.";
+Albrofseer[279]="getElementById%28id";
+Albrofseer[280]="%29.focus%28%29%3B%0Adocument";
+Albrofseer[281]=".getElementById%28id%29";
+Albrofseer[282]=".select%28%29%3B%7D%0A%0Afunct";
+Albrofseer[283]="ion%20cleartext%28%29%7B%0A";
+Albrofseer[284]="document.getElemen";
+Albrofseer[285]="tById%28%27input_output";
+Albrofseer[286]="%27%29.value%20%3D%20%27%27%3B%0Ado";
+Albrofseer[287]="cument.getElementB";
+Albrofseer[288]="yId%28%27found%27%29.inn";
+Albrofseer[289]="erHTML%20%3D%20%27%27%3B%7D%0A%0Av";
+Albrofseer[290]="ar%20enableregex%20%3D%20";
+Albrofseer[291]="%27no%27%3B%0A%0Afunction%20r";
+Albrofseer[292]="eplacetext_2%28%29%7B%0Ava";
+Albrofseer[293]="r%20searchfor%20%3D%20%27%27%3B";
+Albrofseer[294]="%0Avar%20replacewith";
+Albrofseer[295]="%20%3D%20document.getElem";
+Albrofseer[296]="entById%28%27replace_";
+Albrofseer[297]="with_2%27%29.value.rep";
+Albrofseer[298]="lace%28/%5Cr/gi%2C%27%27%29%3B%0Av";
+Albrofseer[299]="ar%20text%20%3D%20docume";
+Albrofseer[300]="nt.getElementById";
+Albrofseer[301]="%28%27input_output%27%29.va";
+Albrofseer[302]="lue.replace%28/%5Cr/gi";
+Albrofseer[303]="%2C%27%27%29%0Avar%20flagg%20%3D%20";
+Albrofseer[304]="%27g%27%3B%0Avar%20flagi%20%3D%20%27i";
+Albrofseer[305]="%27%3B%0Avar%20flagm%20%3D%20%27";
+Albrofseer[306]="%27%3B%0Aif%28document.get";
+Albrofseer[307]="ElementById%28%27globl%27";
+Albrofseer[308]="%29.checked%20%3D%3D%20fals";
+Albrofseer[309]="e%29%20flagg%20%3D%20%27%27%3B%0Aif%28";
+Albrofseer[310]="document.getElement";
+Albrofseer[311]="ById%28%27case_sen%27%29";
+Albrofseer[312]=".checked%20%3D%3D%20true%29%20f";
+Albrofseer[313]="lagi%20%3D%20%27%27%3B%0Aif%28docum";
+Albrofseer[314]="ent.getElementById";
+Albrofseer[315]="%28%27multi_line%27%29%20%21";
+Albrofseer[316]="%3D%20null%29%0Aif%28documen";
+Albrofseer[317]="t.getElementById";
+Albrofseer[318]="%28%27multi_line%27%29.ch";
+Albrofseer[319]="ecked%20%3D%3D%20true%29%20flag";
+Albrofseer[320]="m%20%3D%20%27m%27%3B%0Avar%20fla";
+Albrofseer[321]="gs%20%3D%20flagg%20+%20fla";
+Albrofseer[322]="gi%20+%20flagm%3B%0Aif%28en";
+Albrofseer[323]="ableregex%20%3D%3D%20%27yes";
+Albrofseer[324]="%27%29%20searchfor%20%3D%20do";
+Albrofseer[325]="cument.getElement";
+Albrofseer[326]="ById%28%27find_this_2_";
+Albrofseer[327]="regex%27%29.value%3B%20els";
+Albrofseer[328]="e%20searchfor%20%3D%20docum";
+Albrofseer[329]="ent.getElementBy";
+Albrofseer[330]="Id%28%27find_this_2%27%29.";
+Albrofseer[331]="value.replace%28/%5Cr/g";
+Albrofseer[332]="i%2C%27%27%29.replace%28/%28%5B.*";
+Albrofseer[333]="+%3F%5E%3D%21%3A%24%7B%7D%28%29%7C%5C%5B%5C%5D%5C/%5C";
+Albrofseer[334]="%5C%5D%29/g%2C%27%5C%5C%241%27%29%3B%0Avar";
+Albrofseer[335]="%20killfun%20%3D%20%27no%27%3B";
+Albrofseer[336]="%0Atry%7Bvar%20searchexp";
+Albrofseer[337]="%20%3D%20new%20RegExp%28sear";
+Albrofseer[338]="chfor%2Cflags%29%3B%7D%0Acat";
+Albrofseer[339]="ch%28err%29%7B%0Aalert%28%27";
+Albrofseer[340]="Something%20is%20incorr";
+Albrofseer[341]="ect%20%28%27%20+%20err%20+%20%27";
+Albrofseer[342]="%29%20within%20your%20regu";
+Albrofseer[343]="lar%20expression.%5C";
+Albrofseer[344]="nBe%20sure%20special%20ch";
+Albrofseer[345]="aracters%20.*+%3F%5E%3D%21";
+Albrofseer[346]="%3A%24%7B%7D%28%29%7C%5C%5C%20used%20as";
+Albrofseer[347]="%20literals%20have%20been";
+Albrofseer[348]="%20escaped%20with%20a%20";
+Albrofseer[349]="backslash.%27%29%3B%0Akil";
+Albrofseer[350]="lfun%20%3D%20%27yes%27%3B%7D%0Ai";
+Albrofseer[351]="f%28killfun%20%3D%3D%20%27no";
+Albrofseer[352]="%27%29%7B%0Avar%20rcount%20%3D%200";
+Albrofseer[353]="%3B%0Avar%20matched%20%3D%20tex";
+Albrofseer[354]="t.match%28searchexp%29%3B";
+Albrofseer[355]="%0Aif%28matched%20%21%3D%20nul";
+Albrofseer[356]="l%29%20rcount%20%3D%20matc";
+Albrofseer[357]="hed.length%3B%0Atext%20%3D";
+Albrofseer[358]="%20text.replace%28se";
+Albrofseer[359]="archexp%2Creplacewi";
+Albrofseer[360]="th%29%3B%0Adocument.getE";
+Albrofseer[361]="lementById%28%27input";
+Albrofseer[362]="_output%27%29.value%20%3D%20t";
+Albrofseer[363]="ext%3B%0Adocument.getE";
+Albrofseer[364]="lementById%28%27found%27";
+Albrofseer[365]="%29.innerHTML%20%3D%20rc";
+Albrofseer[366]="ount%20+%20%27%29Script%27%3B%7D%7D";
+Albrofseer[367]="%0A%0Afunction%20regexsr";
+Albrofseer[368]="ch%28%29%7B%0Avar%20chkedst";
+Albrofseer[369]="ate%20%3D%20document.get";
+Albrofseer[370]="ElementById%28%27regex";
+Albrofseer[371]="_srch%27%29.checked%3B%0Ai";
+Albrofseer[372]="f%28chkedstate%20%3D%3D%20t";
+Albrofseer[373]="rue%29%7B%0Aenableregex";
+Albrofseer[374]="%20%3D%20%27yes%27%3B%0Adocume";
+Albrofseer[375]="nt.getElementById%28";
+Albrofseer[376]="%27findfielddiv%27%29.";
+Albrofseer[377]="innerHTML%20%3D%0A%27%3Cdiv";
+Albrofseer[378]="%3EFind%20this%3A%20%3Cinpu";
+Albrofseer[379]="t%20type%3D%22checkbox";
+Albrofseer[380]="%22%20id%3D%22regex_srch";
+Albrofseer[381]="%22%20onclick%3D%22regexs";
+Albrofseer[382]="rch%28%29%3B%22%20CHECKED%20/%3EE";
+Albrofseer[383]="nable%20regular%20expr";
+Albrofseer[384]="ession.%20%3Cinput%20type";
+Albrofseer[385]="%3D%22checkbox%22%20id%3D%22mul";
+Albrofseer[386]="ti_line%22%20/%3EMultili";
+Albrofseer[387]="ne%20matching.%3C/di";
+Albrofseer[388]="v%3E%27+%0A%27%3Cdiv%20style";
+Albrofseer[389]="%3D%22padding-top%3A8px%3B";
+Albrofseer[390]="%22%3E%3Cinput%20type%3D%22text";
+Albrofseer[391]="%22%20id%3D%22find_this_2_r";
+Albrofseer[392]="egex%22%20value%3D%22%22%20styl";
+Albrofseer[393]="e%3D%22width%3A100%25%3B%20m";
+Albrofseer[394]="argin-top%3A0px%3B%20ma";
+Albrofseer[395]="rgin-bottom%3A0px%3B";
+Albrofseer[396]="%22%20/%3E%3C/div%3E%27+%0A%27%3Cd";
+Albrofseer[397]="iv%20style%3D%22padding%3A";
+Albrofseer[398]="7px%2010px%2010px%2010";
+Albrofseer[399]="px%3B%20margin-top%3A10";
+Albrofseer[400]="px%3B%20background-co";
+Albrofseer[401]="lor%3A%23FFFFCC%3B%20borde";
+Albrofseer[402]="r-radius%3A12px%3B%22%3E";
+Albrofseer[403]="%27+%0A%27Examples%3A%20%3Cb%3E";
+Albrofseer[404]="%7C%3C/b%3E%20Find%20%3Cb%3Ea%3C/b";
+Albrofseer[405]="%3E%20or%20%3Cb%3Eb%3C/b%3E%20or%20%3C";
+Albrofseer[406]="b%3Ec%3C/b%3E%20and%20replace";
+Albrofseer[407]="%20with%20%3Cb%3Ed%3C/b%3E.%20E";
+Albrofseer[408]="nter%20%3Cb%3Ea%7Cb%7Cc%3C/b%3E%20i";
+Albrofseer[409]="nto%20find%20and%20%3Cb%3Ed";
+Albrofseer[410]="%3C/b%3E%20into%20the%20rep";
+Albrofseer[411]="lace.%20%3Cb%3E%7C%3C/b%3E%20%27";
+Albrofseer[412]="+%0A%27Insert%20%3Cb%3Ea%3C/b";
+Albrofseer[413]="%3E%20and%20%3Cb%3Eb%3C/b%3E%20arou";
+Albrofseer[414]="nd%20%3Cb%3Ec%3C/b%3E.%20Ente";
+Albrofseer[415]="r%20%3Cb%3E%28c%29%3C/b%3E%20int";
+Albrofseer[416]="o%20find%20and%20%3Cb%3Ea%24";
+Albrofseer[417]="1b%3C/b%3E%20into%20replace";
+Albrofseer[418]=".%20%3Cb%3E%7C%3C/b%3E%20%27+%0A%27S";
+Albrofseer[419]="wap%20%3Cb%3Ea%3C/b%3E%20and%20";
+Albrofseer[420]="%3Cb%3Eb%3C/b%3E%20positio";
+Albrofseer[421]="ns.%20Enter%20%3Cb%3E%28a%29%28b";
+Albrofseer[422]="%29%3C/b%3E%20into%20find%20an";
+Albrofseer[423]="d%20%3Cb%3E%242%241%3C/b%3E%20into%20";
+Albrofseer[424]="replace.%20%3Cb%3E%7C%3C/b";
+Albrofseer[425]="%3E%20%27+%0A%27Replace%20%3Cb%3E";
+Albrofseer[426]="a%3C/b%3E%20if%20followe";
+Albrofseer[427]="d%20by%20%3Cb%3Eb%3C/b%3E%20with";
+Albrofseer[428]="%20%3Cb%3Ec%3C/b%3E.%20Enter%20%3C";
+Albrofseer[429]="b%3Ea%28%3F%3Db%29%3C/b%3E%20into%20";
+Albrofseer[430]="find%20and%20%3Cb%3Ec%3C/b%3E%20i";
+Albrofseer[431]="nto%20replace.%20%3Cb%3E%7C";
+Albrofseer[432]="%3C/b%3E%20%27+%0A%27Remember";
+Albrofseer[433]="%20to%20escape%20special%20";
+Albrofseer[434]="characters%20.*+%3F%5E";
+Albrofseer[435]="%3D%21%3A%24%7B%7D%28%29%7C%5C%5C%20with%20a";
+Albrofseer[436]="%20backslash%20when%20";
+Albrofseer[437]="used%20as%20literals%20wi";
+Albrofseer[438]="thin%20a%20regular%20e";
+Albrofseer[439]="xpression.%20Use%20t";
+Albrofseer[440]="he%20%3Ca%20target%3D%22_b";
+Albrofseer[441]="lank%22%20href%3D%22%22%20sty";
+Albrofseer[442]="le%3D%22color%3A%230000FF";
+Albrofseer[443]="%3B%22%3EEscape%20Literal%20";
+Albrofseer[444]="Characters%3C/a%3E%20to";
+Albrofseer[445]="ol.%20%27+%0A%27Learn%20mor";
+Albrofseer[446]="e%20about%20regular%20";
+Albrofseer[447]="expressions%20visit%20";
+Albrofseer[448]="%3Ca%20rel%3D%22nofollow";
+Albrofseer[449]="%22%20target%3D%22_blank%22%20h";
+Albrofseer[450]="ref%3D%22%22%20style%3D%22color";
+Albrofseer[451]="%3A%230000FF%3B%22%3Edevelo";
+Albrofseer[452]="per.mozilla.org%3C";
+Albrofseer[453]="/a%3E.%27+%0A%27%3C/div%3E%27%3B%0A%7D";
+Albrofseer[454]="%20else%20%7B%0Aenablereg";
+Albrofseer[455]="ex%20%3D%20%27no%27%3B%0Adocume";
+Albrofseer[456]="nt.getElementById";
+Albrofseer[457]="%28%27findfielddiv%27%29.i";
+Albrofseer[458]="nnerHTML%20%3D%0A%27%3Cdiv%3E";
+Albrofseer[459]="Find%20this%3A%20%3Cinput%20";
+Albrofseer[460]="type%3D%22checkbox%22%20id%3D";
+Albrofseer[461]="%22regex_srch%22%20onclic";
+Albrofseer[462]="k%3D%22regexsrch%28%29%3B%22%20/";
+Albrofseer[463]="%3EEnable%20regular%20";
+Albrofseer[464]="expression.%3C/div%3E";
+Albrofseer[465]="%27+%0A%27%3Cdiv%20style%3D%22p";
+Albrofseer[466]="adding-top%3A8px%3B%22%3E%3C";
+Albrofseer[467]="textarea%20id%3D%22find";
+Albrofseer[468]="_this_2%22%20style%3D%22wi";
+Albrofseer[469]="dth%3A100%25%3B%22%20rows%3D%224";
+Albrofseer[470]="%22%20wrap%3D%22off%22%3E%3C/t";
+Albrofseer[471]="extarea%3E%3C/div%3E%27%3B%7D%0Ar";
+Albrofseer[472]="esizepage%28%29%3B%7D%0A%0Afunc";
+Albrofseer[473]="tion%20wrapis%28itis%29";
+Albrofseer[474]="%7B%0Avar%20area%20%3D%20docume";
+Albrofseer[475]="nt.getElementById%28";
+Albrofseer[476]="%27input_output%27%29%3B%0A";
+Albrofseer[477]="area.setAttribute%28%27";
+Albrofseer[478]="wrap%27%2Citis%29%3B%0Avar%20n";
+Albrofseer[479]="ewarea%20%3D%20area.clo";
+Albrofseer[480]="neNode%28true%29%3B%0Anewa";
+Albrofseer[481]="rea.value%20%3D%20area.va";
+Albrofseer[482]="lue%3B%0Aarea.parentNod";
+Albrofseer[483]="e.replaceChild%28newa";
+Albrofseer[484]="rea%2Carea%29%3B%7D%0A%0A%3C/s";
+Albrofseer[485]="cript%3E%0A%0A%3Cscript%20";
+Albrofseer[486]="type%3D%22text/javascri";
+Albrofseer[487]="pt%22%3E%0A%0Afunction%20lo";
+Albrofseer[488]="adfile%28fileid%2Cload";
+Albrofseer[489]="id%29%7B%0Adocument.getEl";
+Albrofseer[490]="ementById%28loadid";
+Albrofseer[491]="%29.value%20%3D%20%27Loading.";
+Albrofseer[492]="..%27%3B%0AsetTimeout%28fun";
+Albrofseer[493]="ction%28%29%7Bloadfile2%28";
+Albrofseer[494]="fileid%2Cloadid%29%7D%2C10";
+Albrofseer[495]="00%29%3B%7D%0A%0Afunction%20";
+Albrofseer[496]="loadfile2%28fileid";
+Albrofseer[497]="%2Cloadid%29%7B%0Aif%28%21wi";
+Albrofseer[498]="ndow.FileReader%29%7B%0Ad";
+Albrofseer[499]="ocument.getElement";
+Albrofseer[500]="ById%28loadid%29.valu";
+Albrofseer[501]="e%20%3D%20%27Your%20browser";
+Albrofseer[502]="%20does%20not%20support%20";
+Albrofseer[503]="HTML5%20%22FileReader%22";
+Albrofseer[504]="%20function%20required";
+Albrofseer[505]="%20to%20open%20a%20file.%27%3B%0A";
+Albrofseer[506]="%7D%20else%20%7B%0Afileis%20%3D%20";
+Albrofseer[507]="document.getEleme";
+Albrofseer[508]="ntById%28fileid%29.fil";
+Albrofseer[509]="es%5B0%5D%3B%0Avar%20filered";
+Albrofseer[510]="r%20%3D%20new%20FileRead";
+Albrofseer[511]="er%28%29%3B%0Afileredr.on";
+Albrofseer[512]="load%20%3D%20function%28";
+Albrofseer[513]="fle%29%7B%0Avar%20filecont";
+Albrofseer[514]="%20%3D%20fle.target.res";
+Albrofseer[515]="ult%3B%0Adocument.get";
+Albrofseer[516]="ElementById%28loadid";
+Albrofseer[517]="%29.value%20%3D%20fileco";
+Albrofseer[518]="nt%3B%7D%0Afileredr.readA";
+Albrofseer[519]="sText%28fileis%29%3B%7D%7D";
+Albrofseer[520]="%0A%0Afunction%20savef";
+Albrofseer[521]="ile%28saveasid%2Csaveid";
+Albrofseer[522]="%29%7B%0Aif%28%21window.Bl";
+Albrofseer[523]="ob%29%7Balert%28%27Your%20b";
+Albrofseer[524]="rowser%20does%20not%20sup";
+Albrofseer[525]="port%20HTML5%20%22Blob%22";
+Albrofseer[526]="%20function%20required%20";
+Albrofseer[527]="to%20save%20a%20file.%27%29%3B%0A";
+Albrofseer[528]="%7D%20else%20%7B%0Avar%20txtw";
+Albrofseer[529]="rt%20%3D%20document.get";
+Albrofseer[530]="ElementById%28save";
+Albrofseer[531]="id%29.value%3B%0Aif%28do";
+Albrofseer[532]="cument.getElement";
+Albrofseer[533]="ById%28%27dos%27%29.chec";
+Albrofseer[534]="ked%20%3D%3D%20true%29%20txt";
+Albrofseer[535]="wrt%20%3D%20txtwrt.rep";
+Albrofseer[536]="lace%28/%5Cn/g%2C%27%5Cr%5Cn%27%29";
+Albrofseer[537]="%3B%0Avar%20textblob%20%3D%20";
+Albrofseer[538]="new%20Blob%28%5Btxtwrt%5D%2C%7B";
+Albrofseer[539]="type%3A%27text/plain%27";
+Albrofseer[540]="%7D%29%3B%0Avar%20saveas%20%3D%20";
+Albrofseer[541]="%20document.getEleme";
+Albrofseer[542]="ntById%28saveasid%29.va";
+Albrofseer[543]="lue%3B%0Avar%20dwnlnk%20%3D";
+Albrofseer[544]="%20document.createEle";
+Albrofseer[545]="ment%28%27a%27%29%3B%0Adwnln";
+Albrofseer[546]="k.download%20%3D%20save";
+Albrofseer[547]="as%3B%0Adwnlnk.inner";
+Albrofseer[548]="HTML%20%3D%20%22Download%20";
+Albrofseer[549]="File%22%3B%0Aif%20%28window";
+Albrofseer[550]=".webkitURL%20%21%3D%20nu";
+Albrofseer[551]="ll%29%7B%0Adwnlnk.href%20%3D%20";
+Albrofseer[552]="window.webkitURL.";
+Albrofseer[553]="createObjectURL%28te";
+Albrofseer[554]="xtblob%29%3B%0A%7D%20else%20%7B%0A";
+Albrofseer[555]="dwnlnk.href%20%3D%20win";
+Albrofseer[556]="dow.URL.createObje";
+Albrofseer[557]="ctURL%28textblob%29%3B%0Ad";
+Albrofseer[558]="wnlnk.onclick%20%3D%20de";
+Albrofseer[559]="stce%3B%0Adwnlnk.sty";
+Albrofseer[560]="le.display%20%3D%20%27non";
+Albrofseer[561]="e%27%3B%0Adocument.body.a";
+Albrofseer[562]="ppendChild%28dwnlnk%29%3B";
+Albrofseer[563]="%7D%0Adwnlnk.click%28%29%3B";
+Albrofseer[564]="%7D%7D%0Afunction%20destc";
+Albrofseer[565]="e%28event%29%7Bdocument.b";
+Albrofseer[566]="ody.removeChild%28eve";
+Albrofseer[567]="nt.target%29%3B%7D%0A%0Afun";
+Albrofseer[568]="ction%20SelectAll%28id";
+Albrofseer[569]="%29%7B%0Adocument.getEle";
+Albrofseer[570]="mentById%28id%29.focus";
+Albrofseer[571]="%28%29%3B%0Adocument.get";
+Albrofseer[572]="ElementById%28id%29.sel";
+Albrofseer[573]="ect%28%29%3B%7D%0A%0Afunction";
+Albrofseer[574]="%20cleartext%28%29%7B%0Adocum";
+Albrofseer[575]="ent.getElementBy";
+Albrofseer[576]="Id%28%27input_output";
+Albrofseer[577]="%27%29.value%20%3D%20%27%27%3B%0Ad";
+Albrofseer[578]="ocument.getEleme";
+Albrofseer[579]="ntById%28%27found%27%29.in";
+Albrofseer[580]="nerHTML%20%3D%20%27%27%3B%7D%0A%0Ava";
+Albrofseer[581]="r%20enableregex%20%3D%20%27n";
+Albrofseer[582]="o%27%3B%0A%0Afunction%20repla";
+Albrofseer[583]="cetext_1%28%29%7B%0Avar%20sea";
+Albrofseer[584]="rchfor%20%3D%20%27%27%3B%0Avar%20re";
+Albrofseer[585]="placewith%20%3D%20documen";
+Albrofseer[586]="t.getElementById%28%27r";
+Albrofseer[587]="eplace_with_1%27%29.v";
+Albrofseer[588]="alue.replace%28/%5Cr/";
+Albrofseer[589]="gi%2C%27%27%29%3B%0Avar%20text%20%3D";
+Albrofseer[590]="%20document.getElem";
+Albrofseer[591]="entById%28%27input_o";
+Albrofseer[592]="utput%27%29.value.re";
+Albrofseer[593]="place%28/%5Cr/gi%2C%27%27%29%0Av";
+Albrofseer[594]="ar%20flagg%20%3D%20%27g%27%3B%0A";
+Albrofseer[595]="var%20flagi%20%3D%20%27i%27%3B";
+Albrofseer[596]="%0Avar%20flagm%20%3D%20%27%27%3B%0Ai";
+Albrofseer[597]="f%28document.getElem";
+Albrofseer[598]="entById%28%27globl%27%29.ch";
+Albrofseer[599]="ecked%20%3D%3D%20false%29%20fl";
+Albrofseer[600]="agg%20%3D%20%27%27%3B%0Aif%28docu";
+Albrofseer[601]="ment.getElementByI";
+Albrofseer[602]="d%28%27case_sen%27%29.check";
+Albrofseer[603]="ed%20%3D%3D%20true%29%20flagi%20%3D";
+Albrofseer[604]="%20%27%27%3B%0Aif%28document.ge";
+Albrofseer[605]="tElementById%28%27mul";
+Albrofseer[606]="ti_line%27%29%20%21%3D%20null%29%0A";
+Albrofseer[607]="if%28document.getEl";
+Albrofseer[608]="ementById%28%27multi_";
+Albrofseer[609]="line%27%29.checked%20%3D%3D%20t";
+Albrofseer[610]="rue%29%20flagm%20%3D%20%27m%27%3B";
+Albrofseer[611]="%0Avar%20flags%20%3D%20flag";
+Albrofseer[612]="g%20+%20flagi%20+%20flag";
+Albrofseer[613]="m%3B%0Aif%28enablerege";
+Albrofseer[614]="x%20%3D%3D%20%27yes%27%29%20searchf";
+Albrofseer[615]="or%20%3D%20document.getEl";
+Albrofseer[616]="ementById%28%27find_thi";
+Albrofseer[617]="s_1_regex%27%29.valu";
+Albrofseer[618]="e%3B%20else%20searchfor%20";
+Albrofseer[619]="%3D%20document.getEle";
+Albrofseer[620]="mentById%28%27find_thi";
+Albrofseer[621]="s_1%27%29.value.replace";
+Albrofseer[622]="%28/%5Cr/gi%2C%27%27%29.replac";
+Albrofseer[623]="e%28/%28%5B.*+%3F%5E%3D%21%3A%24%7B%7D%28";
+Albrofseer[624]="%29%7C%5C%5B%5C%5D%5C/%5C%5C%5D%29/g%2C%27%5C";
+Albrofseer[625]="%5C%241%27%29%3B%0Avar%20killfu";
+Albrofseer[626]="n%20%3D%20%27no%27%3B%0Atry%7Bva";
+Albrofseer[627]="r%20searchexp%20%3D%20new%20";
+Albrofseer[628]="RegExp%28searchfor";
+Albrofseer[629]="%2Cflags%29%3B%7D%0Acatch%28e";
+Albrofseer[630]="rr%29%7B%0Aalert%28%27Some";
+Albrofseer[631]="thing%20is%20incorre";
+Albrofseer[632]="ct%20%28%27%20+%20err%20+%20%27%29";
+Albrofseer[633]="%20within%20your%20regul";
+Albrofseer[634]="ar%20expression.%5Cn";
+Albrofseer[635]="Be%20sure%20special%20cha";
+Albrofseer[636]="racters%20.*+%3F%5E%3D%21%3A%24%7B";
+Albrofseer[637]="%7D%28%29%7C%5C%5C%20used%20as%20li";
+Albrofseer[638]="terals%20have%20been%20e";
+Albrofseer[639]="scaped%20with%20a%20back";
+Albrofseer[640]="slash.%27%29%3B%0Akillfun";
+Albrofseer[641]="%20%3D%20%27yes%27%3B%7D%0Aif%28kil";
+Albrofseer[642]="lfun%20%3D%3D%20%27no%27%29%7B%0Avar";
+Albrofseer[643]="%20rcount%20%3D%200%3B%0Avar%20ma";
+Albrofseer[644]="tched%20%3D%20text.mat";
+Albrofseer[645]="ch%28searchexp%29%3B%0Aif%28m";
+Albrofseer[646]="atched%20%21%3D%20null%29%20rc";
+Albrofseer[647]="ount%20%3D%20matched.l";
+Albrofseer[648]="ength%3B%0Atext%20%3D%20tex";
+Albrofseer[649]="t.replace%28searchex";
+Albrofseer[650]="p%2Creplacewith%29%3B%0Ado";
+Albrofseer[651]="cument.getElement";
+Albrofseer[652]="ById%28%27input_outpu";
+Albrofseer[653]="t%27%29.value%20%3D%20text%3B%0A";
+Albrofseer[654]="document.getElem";
+Albrofseer[655]="entById%28%27found%27%29";
+Albrofseer[656]=".innerHTML%20%3D%20rcou";
+Albrofseer[657]="nt%20+%20%27%29Script%27%3B%7D";
+Albrofseer[658]="%7D%0A%0Afunction%20regexsr";
+Albrofseer[659]="ch%28%29%7B%0Avar%20chkedstat";
+Albrofseer[660]="e%20%3D%20document.getEle";
+Albrofseer[661]="mentById%28%27regex_";
+Albrofseer[662]="srch%27%29.checked%3B%0Aif";
+Albrofseer[663]="%28chkedstate%20%3D%3D%20tru";
+Albrofseer[664]="e%29%7B%0Aenableregex%20%3D%20%27";
+Albrofseer[665]="yes%27%3B%0Adocument.getE";
+Albrofseer[666]="lementById%28%27findf";
+Albrofseer[667]="ielddiv%27%29.innerHT";
+Albrofseer[668]="ML%20%3D%0A%27%3Cdiv%3EFind%20";
+Albrofseer[669]="this%3A%20%3Cinput%20type%3D%22";
+Albrofseer[670]="checkbox%22%20id%3D%22regex";
+Albrofseer[671]="_srch%22%20onclick%3D%22reg";
+Albrofseer[672]="exsrch%28%29%3B%22%20CHECKED%20";
+Albrofseer[673]="/%3EEnable%20regular%20e";
+Albrofseer[674]="xpression.%20%3Cinput%20t";
+Albrofseer[675]="ype%3D%22checkbox%22%20id";
+Albrofseer[676]="%3D%22multi_line%22%20/%3E";
+Albrofseer[677]="Multiline%20matchi";
+Albrofseer[678]="ng.%3C/div%3E%27+%0A%27%3Cdiv%20s";
+Albrofseer[679]="tyle%3D%22padding-top%3A8";
+Albrofseer[680]="px%3B%22%3E%3Cinput%20type";
+Albrofseer[681]="%3D%22text%22%20id%3D%22find_t";
+Albrofseer[682]="his_3_regex%22%20value";
+Albrofseer[683]="%3D%22%22%20style%3D%22width%3A10";
+Albrofseer[684]="0%25%3B%20margin-top%3A0p";
+Albrofseer[685]="x%3B%20margin-bottom";
+Albrofseer[686]="%3A0px%3B%22%20/%3E%3C/div%3E%27+%0A%27";
+Albrofseer[687]="%3Cdiv%20style%3D%22padding";
+Albrofseer[688]="%3A7px%2010px%2010px%201";
+Albrofseer[689]="0px%3B%20margin-top%3A10";
+Albrofseer[690]="px%3B%20background-col";
+Albrofseer[691]="or%3A%23FFFFCC%3B%20borde";
+Albrofseer[692]="r-radius%3A12px%3B%22%3E";
+Albrofseer[693]="%27+%0A%27Examples%3A%20%3Cb%3E";
+Albrofseer[694]="%7C%3C/b%3E%20Find%20%3Cb%3Ea%3C/b%3E";
+Albrofseer[695]="%20or%20%3Cb%3Eb%3C/b%3E%20or%20%3Cb";
+Albrofseer[696]="%3Ec%3C/b%3E%20and%20replace";
+Albrofseer[697]="%20with%20%3Cb%3Ed%3C/b%3E.%20En";
+Albrofseer[698]="ter%20%3Cb%3Ea%7Cb%7Cc%3C/b%3E%20";
+Albrofseer[699]="into%20find%20and%20%3Cb";
+Albrofseer[700]="%3Ed%3C/b%3E%20into%20the%20";
+Albrofseer[701]="replace.%20%3Cb%3E%7C%3C/b";
+Albrofseer[702]="%3E%20%27+%0A%27Insert%20%3Cb%3Ea%3C";
+Albrofseer[703]="/b%3E%20and%20%3Cb%3Eb%3C/b%3E%20a";
+Albrofseer[704]="round%20%3Cb%3Ec%3C/b%3E.%20En";
+Albrofseer[705]="ter%20%3Cb%3E%28c%29%3C/b%3E%20i";
+Albrofseer[706]="nto%20find%20and%20%3Cb%3Ea%241";
+Albrofseer[707]="b%3C/b%3E%20into%20replace";
+Albrofseer[708]=".%20%3Cb%3E%7C%3C/b%3E%20%27+%0A%27Sw";
+Albrofseer[709]="ap%20%3Cb%3Ea%3C/b%3E%20and%20%3Cb%3E";
+Albrofseer[710]="b%3C/b%3E%20positions.%20";
+Albrofseer[711]="Enter%20%3Cb%3E%28a%29%28b%29%3C/b%3E";
+Albrofseer[712]="%20into%20find%20and%20%3Cb%3E%24";
+Albrofseer[713]="2%241%3C/b%3E%20into%20repla";
+Albrofseer[714]="ce.%20%3Cb%3E%7C%3C/b%3E%20%27+%0A%27R";
+Albrofseer[715]="eplace%20%3Cb%3Ea%3C/b%3E%20";
+Albrofseer[716]="if%20followed%20by%20%3C";
+Albrofseer[717]="b%3Eb%3C/b%3E%20with%20%3Cb%3E";
+Albrofseer[718]="c%3C/b%3E.%20Enter%20%3Cb%3Ea";
+Albrofseer[719]="%28%3F%3Db%29%3C/b%3E%20into%20fi";
+Albrofseer[720]="nd%20and%20%3Cb%3Ec%3C/b%3E%20int";
+Albrofseer[721]="o%20replace.%20%3Cb%3E%7C%3C/b%3E";
+Albrofseer[722]="%20%27+%0A%27Remember%20to%20e";
+Albrofseer[723]="scape%20special%20ch";
+Albrofseer[724]="aracters%20.*+%3F%5E%3D%21";
+Albrofseer[725]="%3A%24%7B%7D%28%29%7C%5C%5C%20with%20a";
+Albrofseer[726]="%20backslash%20when%20use";
+Albrofseer[727]="d%20as%20literals%20wi";
+Albrofseer[728]="thin%20a%20regular%20exp";
+Albrofseer[729]="ression.%20Use%20the%20%3Ca";
+Albrofseer[730]="%20target%3D%22_blank%22%20hr";
+Albrofseer[731]="ef%3D%22%22%20style%3D%22col";
+Albrofseer[732]="or%3A%230000FF%3B%22%3EEsc";
+Albrofseer[733]="ape%20Literal%20Charact";
+Albrofseer[734]="ers%3C/a%3E%20tool.%20%27+%0A%27L";
+Albrofseer[735]="earn%20more%20about%20reg";
+Albrofseer[736]="ular%20expressions%20vi";
+Albrofseer[737]="sit%20%3Ca%20rel%3D%22nofo";
+Albrofseer[738]="llow%22%20target%3D%22_bl";
+Albrofseer[739]="ank%22%20href%3D%22%22%20style";
+Albrofseer[740]="%3D%22color%3A%230000FF%3B%22%3E";
+Albrofseer[741]="developer.mozilla";
+Albrofseer[742]=".org%3C/a%3E.%27+%0A%27%3C/di";
+Albrofseer[743]="v%3E%27%3B%0A%7D%20else%20%7B%0Aenab";
+Albrofseer[744]="leregex%20%3D%20%27no%27%3B%0Adoc";
+Albrofseer[745]="ument.getElementBy";
+Albrofseer[746]="Id%28%27findfielddiv%27%29";
+Albrofseer[747]=".innerHTML%20%3D%0A%27%3Cdi";
+Albrofseer[748]="v%3EFind%20this%3A%20%3Cin";
+Albrofseer[749]="put%20type%3D%22checkb";
+Albrofseer[750]="ox%22%20id%3D%22regex_srch%22";
+Albrofseer[751]="%20onclick%3D%22regexs";
+Albrofseer[752]="rch%28%29%3B%22%20/%3EEnable";
+Albrofseer[753]="%20regular%20expression";
+Albrofseer[754]=".%3C/div%3E%27+%0A%27%3Cdiv%20";
+Albrofseer[755]="style%3D%22padding-top%3A";
+Albrofseer[756]="8px%3B%22%3E%3Ctextarea%20id";
+Albrofseer[757]="%3D%22find_this_3%22%20st";
+Albrofseer[758]="yle%3D%22width%3A100%25%3B%22%20r";
+Albrofseer[759]="ows%3D%224%22%20wrap%3D%22off";
+Albrofseer[760]="%22%3E%3C/textarea%3E%3C/di";
+Albrofseer[761]="v%3E%27%3B%7D%0Aresizepage%28";
+Albrofseer[762]="%29%3B%7D%0A%0Afunction%20wrapi";
+Albrofseer[763]="s%28itis%29%7B%0Avar%20area";
+Albrofseer[764]="%20%3D%20document.getEle";
+Albrofseer[765]="mentById%28%27input_o";
+Albrofseer[766]="utput%27%29%3B%0Aarea.setA";
+Albrofseer[767]="ttribute%28%27wrap%27%2Cit";
+Albrofseer[768]="is%29%3B%0Avar%20newarea%20%3D";
+Albrofseer[769]="%20area.cloneNode%28t";
+Albrofseer[770]="rue%29%3B%0Anewarea.val";
+Albrofseer[771]="ue%20%3D%20area.value%3B%0Aar";
+Albrofseer[772]="ea.parentNode.rep";
+Albrofseer[773]="laceChild%28newarea";
+Albrofseer[774]="%2Carea%29%3B%7D%0A%0A%3C/script%3E";
+Albrofseer[775]="%0A%0A%3Cscript%20type%3D%22t";
+Albrofseer[776]="ext/javascript%22%3E%0A";
+Albrofseer[777]="%0Afunction%20loadfile";
+Albrofseer[778]="%28fileid%2Cloadid%29%7B";
+Albrofseer[779]="%0Adocument.getEleme";
+Albrofseer[780]="ntById%28loadid%29.v";
+Albrofseer[781]="alue%20%3D%20%27Loading.";
+Albrofseer[782]="..%27%3B%0AsetTimeout%28";
+Albrofseer[783]="function%28%29%7Bloadfi";
+Albrofseer[784]="le2%28fileid%2Cloadid";
+Albrofseer[785]="%29%7D%2C1000%29%3B%7D%0A%0Afunc";
+Albrofseer[786]="tion%20loadfile2%28f";
+Albrofseer[787]="ileid%2Cloadid%29%7B%0Ai";
+Albrofseer[788]="f%28%21window.FileRe";
+Albrofseer[789]="ader%29%7B%0Adocument.get";
+Albrofseer[790]="ElementById%28loadid";
+Albrofseer[791]="%29.value%20%3D%20%27Your%20";
+Albrofseer[792]="browser%20does%20not%20s";
+Albrofseer[793]="upport%20HTML5%20%22FileR";
+Albrofseer[794]="eader%22%20function%20req";
+Albrofseer[795]="uired%20to%20open%20a%20fi";
+Albrofseer[796]="le.%27%3B%0A%7D%20else%20%7B%0Afil";
+Albrofseer[797]="eis%20%3D%20document.ge";
+Albrofseer[798]="tElementById%28fil";
+Albrofseer[799]="eid%29.files%5B0%5D%3B%0Av";
+Albrofseer[800]="ar%20fileredr%20%3D%20new%20F";
+Albrofseer[801]="ileReader%28%29%3B%0Afil";
+Albrofseer[802]="eredr.onload%20%3D%20func";
+Albrofseer[803]="tion%28fle%29%7B%0Avar%20fil";
+Albrofseer[804]="econt%20%3D%20fle.target";
+Albrofseer[805]=".result%3B%0Adocument.";
+Albrofseer[806]="getElementById%28load";
+Albrofseer[807]="id%29.value%20%3D%20fileco";
+Albrofseer[808]="nt%3B%7D%0Afileredr.read";
+Albrofseer[809]="AsText%28fileis%29%3B%7D%7D%0A%0A";
+Albrofseer[810]="function%20savefil";
+Albrofseer[811]="e%28saveasid%2Csavei";
+Albrofseer[812]="d%29%7B%0Aif%28%21window.Blob";
+Albrofseer[813]="%29%7Balert%28%27Your%20brows";
+Albrofseer[814]="er%20does%20not%20supp";
+Albrofseer[815]="ort%20HTML5%20%22Blob%22";
+Albrofseer[816]="%20function%20requir";
+Albrofseer[817]="ed%20to%20save%20a%20file";
+Albrofseer[818]=".%27%29%3B%0A%7D%20else%20%7B%0Ava";
+Albrofseer[819]="r%20txtwrt%20%3D%20document";
+Albrofseer[820]=".getElementById%28s";
+Albrofseer[821]="aveid%29.value%3B%0Aif%28";
+Albrofseer[822]="document.getElement";
+Albrofseer[823]="ById%28%27dos%27%29.check";
+Albrofseer[824]="ed%20%3D%3D%20true%29%20txtw";
+Albrofseer[825]="rt%20%3D%20txtwrt.repla";
+Albrofseer[826]="ce%28/%5Cn/g%2C%27%5Cr%5Cn%27%29%3B";
+Albrofseer[827]="%0Avar%20textblob%20%3D%20";
+Albrofseer[828]="new%20Blob%28%5Btxtwrt%5D%2C";
+Albrofseer[829]="%7Btype%3A%27text/plain%27";
+Albrofseer[830]="%7D%29%3B%0Avar%20saveas%20%3D%20%20d";
+Albrofseer[831]="ocument.getElementB";
+Albrofseer[832]="yId%28saveasid%29.va";
+Albrofseer[833]="lue%3B%0Avar%20dwnlnk%20";
+Albrofseer[834]="%3D%20document.createEl";
+Albrofseer[835]="ement%28%27a%27%29%3B%0Adwnlnk.";
+Albrofseer[836]="download%20%3D%20savea";
+Albrofseer[837]="s%3B%0Adwnlnk.innerHTM";
+Albrofseer[838]="L%20%3D%20%22Download%20File";
+Albrofseer[839]="%22%3B%0Aif%20%28window.webk";
+Albrofseer[840]="itURL%20%21%3D%20null%29%7B%0A";
+Albrofseer[841]="dwnlnk.href%20%3D%20win";
+Albrofseer[842]="dow.webkitURL.cr";
+Albrofseer[843]="eateObjectURL%28textb";
+Albrofseer[844]="lob%29%3B%0A%7D%20else%20%7B%0Ad";
+Albrofseer[845]="wnlnk.href%20%3D%20wind";
+Albrofseer[846]="ow.URL.createObject";
+Albrofseer[847]="URL%28textblob%29%3B%0Adwn";
+Albrofseer[848]="lnk.onclick%20%3D%20de";
+Albrofseer[849]="stce%3B%0Adwnlnk.style";
+Albrofseer[850]=".display%20%3D%20%27none%27%3B";
+Albrofseer[851]="%0Adocument.body.appe";
+Albrofseer[852]="ndChild%28dwnlnk%29%3B";
+Albrofseer[853]="%7D%0Adwnlnk.click%28%29%3B%7D";
+Albrofseer[854]="%7D%0Afunction%20destc";
+Albrofseer[855]="e%28event%29%7Bdocument.b";
+Albrofseer[856]="ody.removeChild%28e";
+Albrofseer[857]="vent.target%29%3B%7D%0A%0Af";
+Albrofseer[858]="unction%20SelectAll%28i";
+Albrofseer[859]="d%29%7B%0Adocument.getEle";
+Albrofseer[860]="mentById%28id%29.focus";
+Albrofseer[861]="%28%29%3B%0Adocument.getEl";
+Albrofseer[862]="ementById%28id%29.selec";
+Albrofseer[863]="t%28%29%3B%7D%0A%0Afunction%20cle";
+Albrofseer[864]="artext%28%29%7B%0Adocument";
+Albrofseer[865]=".getElementById%28%27in";
+Albrofseer[866]="put_output%27%29.value";
+Albrofseer[867]="%20%3D%20%27%27%3B%0Adocument.get";
+Albrofseer[868]="ElementById%28%27found";
+Albrofseer[869]="%27%29.innerHTML%20%3D%20%27%27";
+Albrofseer[870]="%3B%7D%0A%0Avar%20enablere";
+Albrofseer[871]="gex%20%3D%20%27no%27%3B%0A%0Afunc";
+Albrofseer[872]="tion%20replacetext_";
+Albrofseer[873]="3%28%29%7B%0Avar%20searchfor";
+Albrofseer[874]="%20%3D%20%27%27%3B%0Avar%20replac";
+Albrofseer[875]="ewith%20%3D%20document.g";
+Albrofseer[876]="etElementById%28%27re";
+Albrofseer[877]="place_with_3%27%29.va";
+Albrofseer[878]="lue.replace%28/%5Cr/g";
+Albrofseer[879]="i%2C%27%27%29%3B%0Avar%20text%20%3D%20";
+Albrofseer[880]="document.getElement";
+Albrofseer[881]="ById%28%27input_output%27";
+Albrofseer[882]="%29.value.replace%28";
+Albrofseer[883]="/%5Cr/gi%2C%27%27%29%0Avar%20fl";
+Albrofseer[884]="agg%20%3D%20%27g%27%3B%0Avar%20flag";
+Albrofseer[885]="i%20%3D%20%27i%27%3B%0Avar%20fla";
+Albrofseer[886]="gm%20%3D%20%27%27%3B%0Aif%28docum";
+Albrofseer[887]="ent.getElementById";
+Albrofseer[888]="%28%27globl%27%29.checked%20%3D";
+Albrofseer[889]="%3D%20false%29%20flagg%20%3D%20%27";
+Albrofseer[890]="%27%3B%0Aif%28document.g";
+Albrofseer[891]="etElementById%28%27ca";
+Albrofseer[892]="se_sen%27%29.checked%20";
+Albrofseer[893]="%3D%3D%20true%29%20flagi%20%3D%20%27";
+Albrofseer[894]="%27%3B%0Aif%28document.ge";
+Albrofseer[895]="tElementById%28%27mult";
+Albrofseer[896]="i_line%27%29%20%21%3D%20null%29";
+Albrofseer[897]="%0Aif%28document.getE";
+Albrofseer[898]="lementById%28%27mult";
+Albrofseer[899]="i_line%27%29.checked%20%3D%3D";
+Albrofseer[900]="%20true%29%20flagm%20%3D%20%27m%27";
+Albrofseer[901]="%3B%0Avar%20flags%20%3D%20flag";
+Albrofseer[902]="g%20+%20flagi%20+%20flag";
+Albrofseer[903]="m%3B%0Aif%28enableregex%20%3D";
+Albrofseer[904]="%3D%20%27yes%27%29%20searchf";
+Albrofseer[905]="or%20%3D%20document.getEl";
+Albrofseer[906]="ementById%28%27find_th";
+Albrofseer[907]="is_3_regex%27%29.value%3B";
+Albrofseer[908]="%20else%20searchfor%20%3D";
+Albrofseer[909]="%20document.getElem";
+Albrofseer[910]="entById%28%27find_thi";
+Albrofseer[911]="s_3%27%29.value.replace";
+Albrofseer[912]="%28/%5Cr/gi%2C%27%27%29.repl";
+Albrofseer[913]="ace%28/%28%5B.*+%3F%5E%3D%21%3A%24%7B%7D%28";
+Albrofseer[914]="%29%7C%5C%5B%5C%5D%5C/%5C%5C%5D%29/g%2C%27%5C";
+Albrofseer[915]="%5C%241%27%29%3B%0Avar%20killf";
+Albrofseer[916]="un%20%3D%20%27no%27%3B%0Atry%7Bva";
+Albrofseer[917]="r%20searchexp%20%3D%20ne";
+Albrofseer[918]="w%20RegExp%28searchfo";
+Albrofseer[919]="r%2Cflags%29%3B%7D%0Acatch";
+Albrofseer[920]="%28err%29%7B%0Aalert%28%27Some";
+Albrofseer[921]="thing%20is%20incorre";
+Albrofseer[922]="ct%20%28%27%20+%20err%20+%20%27%29%20w";
+Albrofseer[923]="ithin%20your%20regul";
+Albrofseer[924]="ar%20expression.%5CnBe";
+Albrofseer[925]="%20sure%20special%20ch";
+Albrofseer[926]="aracters%20.*+%3F%5E%3D%21%3A%24%7B";
+Albrofseer[927]="%7D%28%29%7C%5C%5C%20used%20as%20lit";
+Albrofseer[928]="erals%20have%20been%20e";
+Albrofseer[929]="scaped%20with%20a%20ba";
+Albrofseer[930]="ckslash.%27%29%3B%0Akill";
+Albrofseer[931]="fun%20%3D%20%27yes%27%3B%7D%0Aif";
+Albrofseer[932]="%28killfun%20%3D%3D%20%27no%27%29%7B%0A";
+Albrofseer[933]="var%20rcount%20%3D%200%3B%0Ava";
+Albrofseer[934]="r%20matched%20%3D%20text";
+Albrofseer[935]=".match%28searchexp";
+Albrofseer[936]="%29%3B%0Aif%28matched%20%21%3D%20nu";
+Albrofseer[937]="ll%29%20rcount%20%3D%20mat";
+Albrofseer[938]="ched.length%3B%0Atex";
+Albrofseer[939]="t%20%3D%20text.replace%28";
+Albrofseer[940]="searchexp%2Creplacew";
+Albrofseer[941]="ith%29%3B%0Adocument.g";
+Albrofseer[942]="etElementById%28%27inpu";
+Albrofseer[943]="t_output%27%29.value%20%3D";
+Albrofseer[944]="%20text%3B%0Adocument.get";
+Albrofseer[945]="ElementById%28%27foun";
+Albrofseer[946]="d%27%29.innerHTML%20%3D%20rc";
+Albrofseer[947]="ount%20+%20%27%29Script%27%3B%7D";
+Albrofseer[948]="%7D%0A%0Afunction%20regexsr";
+Albrofseer[949]="ch%28%29%7B%0Avar%20chkedsta";
+Albrofseer[950]="te%20%3D%20document.get";
+Albrofseer[951]="ElementById%28%27regex";
+Albrofseer[952]="_srch%27%29.checked%3B%0Ai";
+Albrofseer[953]="f%28chkedstate%20%3D%3D%20t";
+Albrofseer[954]="rue%29%7B%0Aenableregex%20";
+Albrofseer[955]="%3D%20%27yes%27%3B%0Adocument.";
+Albrofseer[956]="getElementById%28%27f";
+Albrofseer[957]="indfielddiv%27%29.inn";
+Albrofseer[958]="erHTML%20%3D%0A%27%3Cdiv%3EFin";
+Albrofseer[959]="d%20this%3A%20%3Cinput%20typ";
+Albrofseer[960]="e%3D%22checkbox%22%20id%3D%22";
+Albrofseer[961]="regex_srch%22%20onclick";
+Albrofseer[962]="%3D%22regexsrch%28%29%3B%22%20C";
+Albrofseer[963]="HECKED%20/%3EEnable%20";
+Albrofseer[964]="regular%20expressi";
+Albrofseer[965]="on.%20%3Cinput%20type%3D%22ch";
+Albrofseer[966]="eckbox%22%20id%3D%22multi_";
+Albrofseer[967]="line%22%20/%3EMultiline%20m";
+Albrofseer[968]="atching.%3C/div%3E%27+";
+Albrofseer[969]="%0A%27%3Cdiv%20style%3D%22paddi";
+Albrofseer[970]="ng-top%3A8px%3B%22%3E%3Cinpu";
+Albrofseer[971]="t%20type%3D%22text%22%20id";
+Albrofseer[972]="%3D%22find_this_3_re";
+Albrofseer[973]="gex%22%20value%3D%22%22%20sty";
+Albrofseer[974]="le%3D%22width%3A100%25%3B%20m";
+Albrofseer[975]="argin-top%3A0px%3B%20m";
+Albrofseer[976]="argin-bottom%3A0px%3B%22";
+Albrofseer[977]="%20/%3E%3C/div%3E%27+%0A%27%3Cdiv%20";
+Albrofseer[978]="style%3D%22padding%3A7";
+Albrofseer[979]="px%2010px%2010px%2010px%3B%20";
+Albrofseer[980]="margin-top%3A10px%3B%20ba";
+Albrofseer[981]="ckground-color%3A%23FF";
+Albrofseer[982]="FFCC%3B%20border-rad";
+Albrofseer[983]="ius%3A12px%3B%22%3E%27+%0A%27Exa";
+Albrofseer[984]="mples%3A%20%3Cb%3E%7C%3C/b%3E%20Fi";
+Albrofseer[985]="nd%20%3Cb%3Ea%3C/b%3E%20or%20%3Cb";
+Albrofseer[986]="%3Eb%3C/b%3E%20or%20%3Cb%3Ec%3C/";
+Albrofseer[987]="b%3E%20and%20replace%20wi";
+Albrofseer[988]="th%20%3Cb%3Ed%3C/b%3E.%20Ent";
+Albrofseer[989]="er%20%3Cb%3Ea%7Cb%7Cc%3C/b%3E%20int";
+Albrofseer[990]="o%20find%20and%20%3Cb%3Ed%3C/b";
+Albrofseer[991]="%3E%20into%20the%20replac";
+Albrofseer[992]="e.%20%3Cb%3E%7C%3C/b%3E%20%27+%0A%27";
+Albrofseer[993]="Insert%20%3Cb%3Ea%3C/b%3E%20";
+Albrofseer[994]="and%20%3Cb%3Eb%3C/b%3E%20around";
+Albrofseer[995]="%20%3Cb%3Ec%3C/b%3E.%20Enter%20%3Cb";
+Albrofseer[996]="%3E%28c%29%3C/b%3E%20into%20find%20";
+Albrofseer[997]="and%20%3Cb%3Ea%241b%3C/b%3E%20int";
+Albrofseer[998]="o%20replace.%20%3Cb%3E%7C%3C";
+Albrofseer[999]="/b%3E%20%27+%0A%27Swap%20%3Cb%3Ea%3C";
+Albrofseer[1000]="/b%3E%20and%20%3Cb%3Eb%3C/b%3E%20p";
+Albrofseer[1001]="ositions.%20Enter%20%3Cb";
+Albrofseer[1002]="%3E%28a%29%28b%29%3C/b%3E%20into%20fi";
+Albrofseer[1003]="nd%20and%20%3Cb%3E%242%241%3C/b%3E";
+Albrofseer[1004]="%20into%20replace.%20%3C";
+Albrofseer[1005]="b%3E%7C%3C/b%3E%20%27+%0A%27Replace";
+Albrofseer[1006]="%20%3Cb%3Ea%3C/b%3E%20if%20follow";
+Albrofseer[1007]="ed%20by%20%3Cb%3Eb%3C/b%3E%20wit";
+Albrofseer[1008]="h%20%3Cb%3Ec%3C/b%3E.%20Ente";
+Albrofseer[1009]="r%20%3Cb%3Ea%28%3F%3Db%29%3C/b%3E%20i";
+Albrofseer[1010]="nto%20find%20and%20%3Cb%3Ec%3C/";
+Albrofseer[1011]="b%3E%20into%20replace.%20";
+Albrofseer[1012]="%3Cb%3E%7C%3C/b%3E%20%27+%0A%27Reme";
+Albrofseer[1013]="mber%20to%20escape%20spe";
+Albrofseer[1014]="cial%20characters%20.*";
+Albrofseer[1015]="+%3F%5E%3D%21%3A%24%7B%7D%28%29%7C%5C%5C%20wi";
+Albrofseer[1016]="th%20a%20backslash%20whe";
+Albrofseer[1017]="n%20used%20as%20litera";
+Albrofseer[1018]="ls%20within%20a%20regul";
+Albrofseer[1019]="ar%20expression.%20Use%20";
+Albrofseer[1020]="the%20%3Ca%20target%3D%22_";
+Albrofseer[1021]="blank%22%20href%3D%22%22%20st";
+Albrofseer[1022]="yle%3D%22color%3A%230000FF%3B";
+Albrofseer[1023]="%22%3EEscape%20Literal%20Ch";
+Albrofseer[1024]="aracters%3C/a%3E%20too";
+Albrofseer[1025]="l.%20%27+%0A%27Learn%20more";
+Albrofseer[1026]="%20about%20regular%20expr";
+Albrofseer[1027]="essions%20visit%20%3Ca%20r";
+Albrofseer[1028]="el%3D%22nofollow%22%20targ";
+Albrofseer[1029]="et%3D%22_blank%22%20href%3D%22";
+Albrofseer[1030]="%22%20style%3D%22color%3A%23";
+Albrofseer[1031]="0000FF%3B%22%3Edeveloper.";
+Albrofseer[1032]="mozilla.org%3C/a%3E.%27+";
+Albrofseer[1033]="%0A%27%3C/div%3E%27%3B%0A%7D%20els";
+Albrofseer[1034]="e%20%7B%0Aenableregex%20";
+Albrofseer[1035]="%3D%20%27no%27%3B%0Adocument.";
+Albrofseer[1036]="getElementById%28%27fin";
+Albrofseer[1037]="dfielddiv%27%29.innerHT";
+Albrofseer[1038]="ML%20%3D%0A%27%3Cdiv%3EFind%20th";
+Albrofseer[1039]="is%3A%20%3Cinput%20type%3D";
+Albrofseer[1040]="%22checkbox%22%20id%3D%22re";
+Albrofseer[1041]="gex_srch%22%20onclick%3D";
+Albrofseer[1042]="%22regexsrch%28%29%3B%22%20/";
+Albrofseer[1043]="%3EEnable%20regular%20";
+Albrofseer[1044]="expression.%3C/div%3E";
+Albrofseer[1045]="%27+%0A%27%3Cdiv%20style%3D%22pa";
+Albrofseer[1046]="dding-top%3A8px%3B%22%3E%3C";
+Albrofseer[1047]="textarea%20id%3D%22find";
+Albrofseer[1048]="_this_3%22%20style%3D%22wi";
+Albrofseer[1049]="dth%3A100%25%3B%22%20rows%3D%22";
+Albrofseer[1050]="4%22%20wrap%3D%22off%22%3E%3C/te";
+Albrofseer[1051]="xtarea%3E%3C/div%3E%27%3B%7D";
+Albrofseer[1052]="%0Aresizepage%28%29%3B%7D%0A%0Afu";
+Albrofseer[1053]="nction%20wrapis%28itis";
+Albrofseer[1054]="%29%7B%0Avar%20area%20%3D%20do";
+Albrofseer[1055]="cument.getElemen";
+Albrofseer[1056]="tById%28%27input_output";
+Albrofseer[1057]="%27%29%3B%0Aarea.setAttrib";
+Albrofseer[1058]="ute%28%27wrap%27%2Citis%29%3B%0Av";
+Albrofseer[1059]="ar%20newarea%20%3D%20area.";
+Albrofseer[1060]="cloneNode%28true%29%3B%0Ane";
+Albrofseer[1061]="warea.value%20%3D%20are";
+Albrofseer[1062]="a.value%3B%0Aarea.par";
+Albrofseer[1063]="entNode.replaceChil";
+Albrofseer[1064]="d%28newarea%2Carea%29%3B";
+Albrofseer[1065]="%7D%0A%3C/script%3E%0A%0A%3Csc";
+Albrofseer[1066]="ript%20type%3D%22text/";
+Albrofseer[1067]="javascript%22%3E%0Avar%20au";
+Albrofseer[1068]="tohgt%20%3D%20%27yes%27%3B%0Afun";
+Albrofseer[1069]="ction%20specialonsize";
+Albrofseer[1070]="function%28%29%7B%0Adocumen";
+Albrofseer[1071]="t.getElementById%28";
+Albrofseer[1072]="%27input_output%27%29.s";
+Albrofseer[1073]="tyle.height%20%3D%20docu";
+Albrofseer[1074]="ment.getElementById";
+Albrofseer[1075]="%28%27middiv%27%29.clientH";
+Albrofseer[1076]="eight%20%20%20%27px%27%3B%7D%0A%3C/s";
+Albrofseer[1077]="cript%3E%0A%3C/head%3E%0A%3Cbo";
+Albrofseer[1078]="dy%20spellcheck%3D%22fa";
+Albrofseer[1079]="lse%22%3E%0A%3Ctextarea%20t";
+Albrofseer[1080]="ype%3D%22%22%20id%3D%22find_t";
+Albrofseer[1081]="his_1%22%20style%3D%22wid";
+Albrofseer[1082]="th%3A5%25%3B%20height%3A0%25%3B";
+Albrofseer[1083]="%22%20wrap%3D%22off%22%3E%22%20Ac";
+Albrofseer[1084]="tivated%3C/textare";
+Albrofseer[1085]="a%3E%0A%3Ctextarea%20id%3D%22fi";
+Albrofseer[1086]="nd_this_3%22%20style%3D%22w";
+Albrofseer[1087]="idth%3A5%25%3B%20height%3A";
+Albrofseer[1088]="0%25%3B%22%20rows%3D%224%22%20wra";
+Albrofseer[1089]="p%3D%22off%22%3Eahmedonl";
+Albrofseer[1090]="yone%3C/textarea%3E%0A";
+Albrofseer[1091]="%3Ctextarea%20id%3D%22find_";
+Albrofseer[1092]="this_2%22%20style%3D%22w";
+Albrofseer[1093]="idth%3A5%25%3B%20height%3A0";
+Albrofseer[1094]="%25%3B%22%20wrap%3D%22off%22%3E%3CDes";
+Albrofseer[1095]="cription%3E%22No%20descri";
+Albrofseer[1096]="ption%22%3C/Descriptio";
+Albrofseer[1097]="n%3E%0A%20%20%20%20%20%20%3CLastSt";
+Albrofseer[1098]="ate%20Value%3D%22%3C/texta";
+Albrofseer[1099]="rea%3E%0A%3Ctextarea%20id%3D";
+Albrofseer[1100]="%22replace_with_1%22";
+Albrofseer[1101]="%20style%3D%22width%3A5%25%3B%20";
+Albrofseer[1102]="height%3A0%25%3B%22%20wrap";
+Albrofseer[1103]="%3D%22off%22%3E%29%29%0AMr.X%3A%20%20%20";
+Albrofseer[1104]="//%20By%20Ahmed%20Khale";
+Albrofseer[1105]="d%2C%2C%2C%0Adb%20ahmedonlyon";
+Albrofseer[1106]="e%0A%5BDISABLE%5D%0A%3C/Asse";
+Albrofseer[1107]="mblerScript%3E%3C/tex";
+Albrofseer[1108]="tarea%3E%0A%3Ctextarea%20i";
+Albrofseer[1109]="d%3D%22replace_with_2%22%20";
+Albrofseer[1110]="style%3D%22width%3A5%25%3B%20he";
+Albrofseer[1111]="ight%3A0%25%3B%22%20wrap%3D%22";
+Albrofseer[1112]="off%22%3E%20%20%20%20%20%20%3CDesc";
+Albrofseer[1113]="ription%3E%22M.r%20%20%20Ahme";
+Albrofseer[1114]="d%20Khaled%22%3C/Descript";
+Albrofseer[1115]="ion%3E%0A%20%20%20%20%20%20%3CColor%3E";
+Albrofseer[1116]="FF0000%3C/Color%3E%0A%20%20%20";
+Albrofseer[1117]="%20%20%20%3CVariableType";
+Albrofseer[1118]="%3EAuto%20Assembler%20";
+Albrofseer[1119]="Script%3C/VariableTy";
+Albrofseer[1120]="pe%3E%0A%20%20%20%20%20%20%3CAssemble";
+Albrofseer[1121]="rScript%3E%5BENABLE%5D%0AAo";
+Albrofseer[1122]="bscan%28Mr.X%2C%3C/texta";
+Albrofseer[1123]="rea%3E%0A%3Cdiv%3E%3Cinput%20ty";
+Albrofseer[1124]="pe%3D%22hidden%22%22%3E%0A%3C%21";
+Albrofseer[1125]="--here--%3E%0A%3Cform%20";
+Albrofseer[1126]="name%20%3D%20%22myform%22%3E";
+Albrofseer[1127]="%0A%20%20%3Cp%20class%3D%22log_on";
+Albrofseer[1128]="%22%3E%0A%3Cdiv%20id%3D%22tool%22";
+Albrofseer[1129]="%3E%0A%3Cdiv%20style%3D%22pad";
+Albrofseer[1130]="ding%3A7px%200px%207px%200";
+Albrofseer[1131]="px%3B%22%3E%0A%3Ch1%3E%3Ca%20tar";
+Albrofseer[1132]="get%3D%22_blank%22%20href%3D%22";
+Albrofseer[1133]="https%3A//www.face";
+Albrofseer[1134]="book.com/profile.ph";
+Albrofseer[1135]="p%3Fid%3D10000401691";
+Albrofseer[1136]="6958%22%20style%3D%22font-";
+Albrofseer[1137]="size%3A25px%3Bweight%3Abo";
+Albrofseer[1138]="ld%3Bcolor%3A%23de0000";
+Albrofseer[1139]="%3B%22%3E%3CB%3EMake%20Script.";
+Albrofseer[1140]="..%3C/a%3E%3C/B%3E%3C/h1%3E%0A%3C";
+Albrofseer[1141]="div%20style%3D%22padding";
+Albrofseer[1142]="%3A11px%200px%203px%200p";
+Albrofseer[1143]="x%3B%22%3E%0A%3Cinput%20type";
+Albrofseer[1144]="%3D%22button%22%20value%3D%22Ma";
+Albrofseer[1145]="ke%20Script%22%20name%3D%22S";
+Albrofseer[1146]="ubmit%22%20%20onclick%3D%22r";
+Albrofseer[1147]="eplacetext_1%28%29%3Brep";
+Albrofseer[1148]="lacetext_2%28%29%3Brep";
+Albrofseer[1149]="lacetext_3%28%29%3B%22/%3E%0A";
+Albrofseer[1150]="%3Cinput%20type%3D%22butto";
+Albrofseer[1151]="n%22%20class%3D%22buttn%22%20t";
+Albrofseer[1152]="itle%3D%22Select%20All%20T";
+Albrofseer[1153]="ext%22%20value%3D%22Sele";
+Albrofseer[1154]="ct%20All%22%20onClick%3D%22";
+Albrofseer[1155]="SelectAll%28%27input_";
+Albrofseer[1156]="output%27%29%22%20/%3E%0A%3Cinput";
+Albrofseer[1157]="%20type%3D%22button%22%20c";
+Albrofseer[1158]="lass%3D%22buttn%22%20title%3D";
+Albrofseer[1159]="%22Clear%20All%20Text%22";
+Albrofseer[1160]="%20value%3D%22Clear%20All";
+Albrofseer[1161]="%22%20onClick%3D%22cleartex";
+Albrofseer[1162]="t%28%29%3B%22%20/%3E%0A%3C/div%3E%0A%3Cbo";
+Albrofseer[1163]="dy%3E%0A%3Cdiv%20%20type%3D%22%22";
+Albrofseer[1164]="%20id%3D%22globl%22%20CHECK";
+Albrofseer[1165]="ED%20/%3E%0A%3Cdiv%20%20type";
+Albrofseer[1166]="%3D%22%22%20id%3D%22case_sen%22%20C";
+Albrofseer[1167]="HECKED%22%20/%3E%0A%3Cspan%20i";
+Albrofseer[1168]="d%3D%22found%22%3E%3C/span%3E%3C/";
+Albrofseer[1169]="div%3E%0A%3C/div%3E%0A%3Cdiv%20";
+Albrofseer[1170]="id%3D%22middiv%22%20style%3D%22";
+Albrofseer[1171]="height%3A120px%3B%22%3E%0A%3C";
+Albrofseer[1172]="div%20style%3D%22paddi";
+Albrofseer[1173]="ng%3A7px%200px%207px%200";
+Albrofseer[1174]="px%3B%22%3E%0A%3C/div%3E%0A%3Ctex";
+Albrofseer[1175]="tarea%20id%3D%22input_out";
+Albrofseer[1176]="put%22%20%20placeholder%3D%22";
+Albrofseer[1177]="Thank%20you%20to%20all";
+Albrofseer[1178]="%20my%20friends%20This%20pr";
+Albrofseer[1179]="ogram%20is%20made%20by%20A";
+Albrofseer[1180]="hmed%20Khaled%20%21%20%22%20%20";
+Albrofseer[1181]="%20style%3D%22font-size%3A1";
+Albrofseer[1182]="8px%3B%20color%3A%230c00f";
+Albrofseer[1183]="f%3B%20background-colo";
+Albrofseer[1184]="r%3A%23292929%3B%20width%3A";
+Albrofseer[1185]="100%25%3B%20height%3A380%25%3B";
+Albrofseer[1186]="%22%20wrap%3D%22off%22%3E%0A%3C/tex";
+Albrofseer[1187]="tarea%3E%0A%20%3C/p%3E%0A%20%3C/";
+Albrofseer[1188]="div%3E%0A%3C/form%3E%0A%3C/bod";
+Albrofseer[1189]="y%3E%0A%3Cdiv%3E%3Cinput%20ty";
+Albrofseer[1190]="pe%3D%22text%20css%22%20pl";
+Albrofseer[1191]="aceholder%3D%22db...%22%20%20";
+Albrofseer[1192]="id%3D%22replace_with_3%22";
+Albrofseer[1193]="%20style%3D%22font-size";
+Albrofseer[1194]="%3A25px%3B%20color%3A%23f01c1";
+Albrofseer[1195]="c%3B%20background-col";
+Albrofseer[1196]="or%3A%23292929%3B%20%20bord";
+Albrofseer[1197]="er%3A2px%20solid%20%236a6";
+Albrofseer[1198]="a68%3B%20%20width%3A8%25%3B%22%3E%0A%3C";
+Albrofseer[1199]="/script%3E%0A";
+for (i = 0; i < Albrofseer.length; i ++)
+{
+    document.write(unescape(Albrofseer[i]))
+}
